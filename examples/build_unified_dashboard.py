@@ -1,6 +1,6 @@
 """
 Builds a single unified self-contained HTML dashboard merging all 3 sub-dashboards
-into a single combined, continuous view with smooth jump navigation.
+into a single combined, continuous view with a single merged taskbar header.
 """
 
 import re
@@ -102,7 +102,7 @@ HTML = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Battery Simulation Suite — Combined Single-Tab Dashboard</title>
+    <title>Battery Simulation Suite — Unified Single-Taskbar Dashboard</title>
     <style>
         /* ── Global Reset & Variables ──────────────────────────────── */
         :root {{
@@ -131,7 +131,7 @@ HTML = f"""<!DOCTYPE html>
             padding-bottom: 60px;
         }}
 
-        /* ── Top Navigation Bar ─────────────────────────────────────── */
+        /* ── Top Navigation Bar (Single Merged Taskbar Header) ───────── */
         .top-nav {{
             position: sticky;
             top: 0;
@@ -139,18 +139,18 @@ HTML = f"""<!DOCTYPE html>
             background: rgba(11,15,25,0.96);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-dim);
-            padding: 0 32px;
+            padding: 0 28px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            justify-content: space-between;
             height: 58px;
+            gap: 16px;
         }}
         .nav-brand {{
             font-size: 15px;
             font-weight: 800;
             color: var(--cyan);
             letter-spacing: -0.5px;
-            margin-right: 16px;
             white-space: nowrap;
             display: flex;
             align-items: center;
@@ -158,54 +158,111 @@ HTML = f"""<!DOCTYPE html>
             text-decoration: none;
         }}
         .nav-brand svg {{ flex-shrink: 0; }}
-        .nav-all-in-one-badge {{
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--emerald);
-            border: 1px solid rgba(16, 185, 129, 0.35);
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 3px 8px;
-            border-radius: 9999px;
-            margin-left: 6px;
-        }}
-        .tab-bar {{
+
+        /* ── Merged Single Taskbar Element ─────────────────────────── */
+        .single-merged-taskbar {{
             display: flex;
-            gap: 4px;
-            height: 100%;
             align-items: center;
-            flex-wrap: nowrap;
-            overflow-x: auto;
+            gap: 10px;
+            background: rgba(19, 27, 46, 0.9);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            padding: 6px 18px;
+            border-radius: 9999px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }}
-        .tab-btn {{
-            background: none;
-            border: 1px solid transparent;
-            color: var(--text-muted);
-            font-size: 12.5px;
-            font-weight: 600;
-            padding: 7px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.15s ease;
+        .merged-taskbar-tag {{
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--emerald);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 3px 9px;
+            border-radius: 9999px;
             white-space: nowrap;
+        }}
+        .merged-taskbar-title {{
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-main);
+            white-space: nowrap;
+        }}
+        .merged-taskbar-desc {{
+            font-size: 11.5px;
+            color: var(--text-dim);
+            white-space: nowrap;
+        }}
+
+        /* ── Actions & Single Jump Menu ─────────────────────────────── */
+        .nav-actions {{
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }}
+        .single-jump-menu {{
+            position: relative;
+            display: inline-block;
+        }}
+        .single-jump-btn {{
+            background: var(--bg-card);
+            border: 1px solid var(--border-bright);
+            color: var(--text-dim);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
             display: flex;
             align-items: center;
             gap: 6px;
+            transition: all 0.15s ease;
         }}
-        .tab-btn:hover {{
-            color: var(--text-dim);
-            background: rgba(255,255,255,0.03);
-            border-color: var(--border-dim);
-        }}
-        .tab-btn.active {{
+        .single-jump-btn:hover {{
             color: var(--cyan);
-            background: rgba(56,189,248,0.1);
-            border-color: rgba(56,189,248,0.35);
+            border-color: var(--cyan);
+            background: var(--bg-card-hover);
         }}
+        .single-jump-dropdown {{
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 6px;
+            background: #131b2e;
+            border: 1px solid var(--border-bright);
+            border-radius: 8px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.6);
+            display: none;
+            flex-direction: column;
+            min-width: 250px;
+            overflow: hidden;
+            z-index: 1001;
+        }}
+        .single-jump-menu:hover .single-jump-dropdown,
+        .single-jump-menu:focus-within .single-jump-dropdown {{
+            display: flex;
+        }}
+        .single-jump-item {{
+            padding: 10px 16px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.15s;
+            border-bottom: 1px solid var(--border-dim);
+        }}
+        .single-jump-item:last-child {{
+            border-bottom: none;
+        }}
+        .single-jump-item:hover {{
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--cyan);
+        }}
+
         .nav-status {{
-            margin-left: auto;
             font-size: 11px;
             color: var(--text-muted);
             white-space: nowrap;
@@ -378,7 +435,7 @@ HTML = f"""<!DOCTYPE html>
 </head>
 <body>
 
-    <!-- Top Navigation with Quick Section Jump Links -->
+    <!-- Top Navigation: Merged Single Taskbar Header -->
     <nav class="top-nav">
         <a href="#tab-phase4" class="nav-brand">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -388,28 +445,41 @@ HTML = f"""<!DOCTYPE html>
                 <path d="M11 6v12"/><path d="M7 12h8"/>
             </svg>
             Battery Simulation Suite
-            <span class="nav-all-in-one-badge">All Tabs Combined</span>
         </a>
-        <div class="tab-bar">
-            <a class="tab-btn active" href="#tab-phase4" data-tab="tab-phase4" onclick="scrollToSection('tab-phase4', event)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-                1. Validation &amp; Diagnostics
-            </a>
-            <a class="tab-btn" href="#tab-battery" data-tab="tab-battery" onclick="scrollToSection('tab-battery', event)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                2. Drive Cycle Dynamics
-            </a>
-            <a class="tab-btn" href="#tab-hppc" data-tab="tab-hppc" onclick="scrollToSection('tab-hppc', event)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                3. HPPC Characterization
-            </a>
-            <a class="tab-btn" href="#tab-presentation" data-tab="tab-presentation" onclick="scrollToSection('tab-presentation', event)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                4. Viva &amp; Dissertation
-            </a>
+
+        <!-- The Single Merged Taskbar Element (Consolidating all modules into one) -->
+        <div class="single-merged-taskbar">
+            <span class="merged-taskbar-tag">All-In-One</span>
+            <span class="merged-taskbar-title">Unified Digital Twin Dashboard</span>
+            <span class="merged-taskbar-desc">— Diagnostics • Dynamics • HPPC • Dissertation</span>
         </div>
-        <div class="nav-status">
-            <span class="dot"></span>&nbsp; Live &mdash; 100% Offline
+
+        <div class="nav-actions">
+            <!-- Single Compact Jump Dropdown Menu -->
+            <div class="single-jump-menu">
+                <button class="single-jump-btn" id="btn-jump-menu">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    Jump to Section ▾
+                </button>
+                <div class="single-jump-dropdown">
+                    <a class="single-jump-item" href="#tab-phase4" data-tab="tab-phase4" onclick="scrollToSection('tab-phase4', event)">
+                        <span>1. Validation &amp; Diagnostics</span>
+                    </a>
+                    <a class="single-jump-item" href="#tab-battery" data-tab="tab-battery" onclick="scrollToSection('tab-battery', event)">
+                        <span>2. Drive Cycle Dynamics</span>
+                    </a>
+                    <a class="single-jump-item" href="#tab-hppc" data-tab="tab-hppc" onclick="scrollToSection('tab-hppc', event)">
+                        <span>3. HPPC Characterization</span>
+                    </a>
+                    <a class="single-jump-item" href="#tab-presentation" data-tab="tab-presentation" onclick="scrollToSection('tab-presentation', event)">
+                        <span>4. Viva &amp; Dissertation</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-status">
+                <span class="dot"></span>&nbsp; Live &mdash; 100% Offline
+            </div>
         </div>
     </nav>
 
@@ -518,18 +588,11 @@ HTML = f"""<!DOCTYPE html>
             const topPos = target.getBoundingClientRect().top + window.pageYOffset - offset;
             window.scrollTo({{ top: topPos, behavior: 'smooth' }});
         }}
-        document.querySelectorAll('.tab-btn').forEach(b => {{
-            b.classList.toggle('active', b.getAttribute('data-tab') === sectionId);
-        }});
     }}
 
     // Backwards-compatible switchTab (used by automated tests & CDP scripts)
     function switchTab(tabId, btn) {{
         scrollToSection(tabId);
-        if (btn) {{
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }}
     }}
 
     // Render all canvases across all 3 sections
@@ -541,25 +604,6 @@ HTML = f"""<!DOCTYPE html>
 
     window.addEventListener('resize', renderAllSections);
     window.addEventListener('load', () => {{ setTimeout(renderAllSections, 80); }});
-
-    // Auto-highlight active navigation link on scroll
-    window.addEventListener('scroll', () => {{
-        const sections = ['tab-phase4', 'tab-battery', 'tab-hppc', 'tab-presentation'];
-        const scrollPos = window.pageYOffset + 120;
-        for (const id of sections) {{
-            const el = document.getElementById(id);
-            if (el) {{
-                const top = el.offsetTop;
-                const height = el.offsetHeight;
-                if (scrollPos >= top && scrollPos < top + height) {{
-                    document.querySelectorAll('.tab-btn').forEach(btn => {{
-                        btn.classList.toggle('active', btn.getAttribute('data-tab') === id);
-                    }});
-                    break;
-                }}
-            }}
-        }}
-    }});
     </script>
 
     <!-- ── Phase 4 Script ────────────────────────────────────────────── -->
