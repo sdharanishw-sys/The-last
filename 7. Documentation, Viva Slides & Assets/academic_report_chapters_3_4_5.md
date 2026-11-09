@@ -7,13 +7,13 @@
 ### Document & Authorship Details
 - **Project Title:** Adaptive EV Battery Management System: Personality-Based Diagnostics and Physics-Informed Digital Twin
 - **Degree Program:** Bachelor of Engineering (B.E.) in Electrical & Electronics Engineering
-- **Institution:** Excel Engineering College (Autonomous)
+- **Institution:** Partner Institution (Autonomous)
 - **Project Team:**
-  - **AL ZAFIRAH M** (Reg. No: `730923105003`)
-  - **BASKAR RAJA S** (Reg. No: `730923105008`)
-  - **DHARANISHWARAN S** (Reg. No: `730923105014`)
-  - **DINESH A** (Reg. No: `730923105015`)
-- **Project Supervisor:** Prof. Rajaswari
+  - **Student A** (Reg. No: `[REG-001]`)
+  - **Student B** (Reg. No: `[REG-002]`)
+  - **Student C** (Reg. No: `[REG-003]`)
+  - **Student D** (Reg. No: `[REG-004]`)
+- **Project Supervisor:** Project Supervisor
 - **Academic Batch:** 2023–2027
 - **Focus Area:** Electric Vehicle Powertrains, Battery Management Systems, Physics-Informed Fault Diagnostics
 - **Document Scope:** Core Technical Chapters (Chapter 3: Methodology & Modeling, Chapter 4: Simulation Results & Benchmarking, Chapter 5: Simulation Boundaries & Future Scope)

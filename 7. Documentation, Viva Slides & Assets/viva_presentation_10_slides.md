@@ -11,14 +11,14 @@
 - **Main Title:** Adaptive EV Battery Management System: Personality-Based Diagnostics and Physics-Informed Digital Twin
 - **Subtitle:** Decoupling Dynamic Driver Transients from Incipient Cell Degradation and Sensor Faults
 - **Project Team Members:**
-  - **AL ZAFIRAH M** (Roll No: 730923105003)
-  - **BASKAR RAJA S** (Roll No: 730923105008)
-  - **DHARANISHWARAN S** (Roll No: 730923105014)
-  - **DINESH A** (Roll No: 730923105015)
+  - **Student A** (Roll No: [REG-001])
+  - **Student B** (Roll No: [REG-002])
+  - **Student C** (Roll No: [REG-003])
+  - **Student D** (Roll No: [REG-004])
 - **Degree:** Bachelor of Engineering (B.E.)
-- **Supervisor:** Prof. Rajaswari
+- **Supervisor:** Project Supervisor
 - **Department:** Department of Electrical & Electronics Engineering
-- **Institution:** Excel Engineering College (Autonomous), Batch: 2023–2027
+- **Institution:** Partner Institution (Autonomous), Batch: 2023–2027
 
 ### Key Bullet Points
 - **Core Problem:** Conventional fixed-threshold BMS architectures suffer from an unavoidable compromise: high false alarms during aggressive driving vs. silent failure on subtle sensor drift.
@@ -29,7 +29,7 @@
 ---
 
 ### Speaker Notes (Oral Script)
-> *"Respected external examiner, internal supervisor Prof. Rajaswari, and faculty members, good morning. We—Al Zafirah, Baskar Raja, Dharanishwaran, and Dinesh—welcome you to the defense of our final-year project: 'Adaptive EV Battery Management System: Personality-Based Diagnostics and Physics-Informed Digital Twin'.*
+> *"Respected external examiner, internal supervisor Project Supervisor, and faculty members, good morning. We—Student A, Student B, Student C, and Student D—welcome you to the defense of our final-year project: 'Adaptive EV Battery Management System: Personality-Based Diagnostics and Physics-Informed Digital Twin'.*
 >
 > *In modern electric vehicles, the battery management system is the central nervous system ensuring safety, performance, and longevity. However, traditional commercial BMS firmware relies heavily on static scalar thresholds. When an aggressive driver accelerates or uses heavy regenerative braking, dynamic voltage drops frequently trigger false alarms. Conversely, insidious faults—such as sensor calibration drift or early internal resistance growth—remain undetected because voltages stay within static limits.*
 >
