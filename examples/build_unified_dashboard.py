@@ -53,6 +53,14 @@ b_body = prefix_body(b_body, 'batt_')
 h_body = prefix_body(h_body, 'hppc_')
 p_body = prefix_body(p_body, 'p4_')
 
+# Erase Phase 4 redundant header block from p_body, preserving badge span IDs (hidden) so JS runs without error
+p_body = re.sub(
+    r'<div class="header">.*?</div>\s*(?=<!-- Quick Navigation -->|<div class="nav-links">)',
+    '<div style="display:none;"><span id="p4_badge-chem"></span><span id="p4_badge-cell"></span><span id="p4_badge-duration"></span><span id="p4_badge-status"></span></div>\\n',
+    p_body,
+    flags=re.DOTALL
+)
+
 # Remove duplicate local tooltip divs from bodies
 b_body = re.sub(r'<div id="batt_tooltip"[^>]*>.*?</div>', '', b_body, flags=re.DOTALL)
 h_body = re.sub(r'<div id="hppc_tooltip"[^>]*>.*?</div>', '', h_body, flags=re.DOTALL)
@@ -159,41 +167,6 @@ HTML = f"""<!DOCTYPE html>
         }}
         .nav-brand svg {{ flex-shrink: 0; }}
 
-        /* ── Merged Single Taskbar Element ─────────────────────────── */
-        .single-merged-taskbar {{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(19, 27, 46, 0.9);
-            border: 1px solid rgba(56, 189, 248, 0.35);
-            padding: 6px 18px;
-            border-radius: 9999px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-        }}
-        .merged-taskbar-tag {{
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--emerald);
-            border: 1px solid rgba(16, 185, 129, 0.4);
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            padding: 3px 9px;
-            border-radius: 9999px;
-            white-space: nowrap;
-        }}
-        .merged-taskbar-title {{
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text-main);
-            white-space: nowrap;
-        }}
-        .merged-taskbar-desc {{
-            font-size: 11.5px;
-            color: var(--text-dim);
-            white-space: nowrap;
-        }}
-
         /* ── Actions & Single Jump Menu ─────────────────────────────── */
         .nav-actions {{
             display: flex;
@@ -299,63 +272,6 @@ HTML = f"""<!DOCTYPE html>
             scroll-margin-top: 75px;
         }}
 
-        /* ── Section Dividers & Banners ─────────────────────────────── */
-        .section-banner {{
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: linear-gradient(135deg, rgba(19, 27, 46, 0.95) 0%, rgba(15, 23, 42, 0.8) 100%);
-            border: 1px solid var(--border-bright);
-            border-left: 4px solid var(--cyan);
-            border-radius: 10px;
-            padding: 16px 22px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-        }}
-        .section-banner.sec2 {{ border-left-color: var(--emerald); }}
-        .section-banner.sec3 {{ border-left-color: var(--amber); }}
-        .section-banner.sec4 {{ border-left-color: var(--purple); }}
-
-        .section-badge {{
-            padding: 4px 10px;
-            border-radius: 9999px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            background: rgba(56, 189, 248, 0.15);
-            color: var(--cyan);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-        }}
-        .section-banner.sec2 .section-badge {{
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--emerald);
-            border-color: rgba(16, 185, 129, 0.3);
-        }}
-        .section-banner.sec3 .section-badge {{
-            background: rgba(245, 158, 11, 0.15);
-            color: var(--amber);
-            border-color: rgba(245, 158, 11, 0.3);
-        }}
-        .section-banner.sec4 .section-badge {{
-            background: rgba(192, 132, 252, 0.15);
-            color: var(--purple);
-            border-color: rgba(192, 132, 252, 0.3);
-        }}
-
-        .section-heading-text h2 {{
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-main);
-            margin: 0 0 2px 0;
-        }}
-        .section-heading-text p {{
-            font-size: 12px;
-            color: var(--text-dim);
-            margin: 0;
-        }}
-
         /* ── Documentation & Presentation Cards ─────────────────────── */
         .doc-cards-grid {{
             display: grid;
@@ -447,13 +363,6 @@ HTML = f"""<!DOCTYPE html>
             Battery Simulation Suite
         </a>
 
-        <!-- The Single Merged Taskbar Element (Consolidating all modules into one) -->
-        <div class="single-merged-taskbar">
-            <span class="merged-taskbar-tag">All-In-One</span>
-            <span class="merged-taskbar-title">Unified Digital Twin Dashboard</span>
-            <span class="merged-taskbar-desc">— Diagnostics • Dynamics • HPPC • Dissertation</span>
-        </div>
-
         <div class="nav-actions">
             <!-- Single Compact Jump Dropdown Menu -->
             <div class="single-jump-menu">
@@ -463,16 +372,16 @@ HTML = f"""<!DOCTYPE html>
                 </button>
                 <div class="single-jump-dropdown">
                     <a class="single-jump-item" href="#tab-phase4" data-tab="tab-phase4" onclick="scrollToSection('tab-phase4', event)">
-                        <span>1. Validation &amp; Diagnostics</span>
+                        <span>Validation &amp; Diagnostics</span>
                     </a>
                     <a class="single-jump-item" href="#tab-battery" data-tab="tab-battery" onclick="scrollToSection('tab-battery', event)">
-                        <span>2. Drive Cycle Dynamics</span>
+                        <span>Drive Cycle Dynamics</span>
                     </a>
                     <a class="single-jump-item" href="#tab-hppc" data-tab="tab-hppc" onclick="scrollToSection('tab-hppc', event)">
-                        <span>3. HPPC Characterization</span>
+                        <span>HPPC Characterization</span>
                     </a>
                     <a class="single-jump-item" href="#tab-presentation" data-tab="tab-presentation" onclick="scrollToSection('tab-presentation', event)">
-                        <span>4. Viva &amp; Dissertation</span>
+                        <span>Viva &amp; Dissertation</span>
                     </a>
                 </div>
             </div>
@@ -486,49 +395,27 @@ HTML = f"""<!DOCTYPE html>
     <!-- ── Combined All-In-One Container ────────────────────────────── -->
     <div class="all-in-one-container">
 
-        <!-- ── Section 1: Phase 4 Validation & Health Dashboard ─────── -->
+        <!-- ── Validation & Health Dashboard ─────── -->
         <section id="tab-phase4" class="tab-pane active">
-            <div class="section-banner">
-                <span class="section-badge">Section 1</span>
-                <div class="section-heading-text">
-                    <h2>Phase 4 — Adaptive Diagnostics &amp; Validation Benchmark</h2>
-                    <p>Physics-informed digital twin parameter tracking, statistical comparison against fixed thresholds, and live anomaly alerts</p>
-                </div>
-            </div>
             {p_body}
         </section>
 
-        <!-- ── Section 2: Battery Drive Cycle Dashboard ──────────────── -->
+        <!-- ── Battery Drive Cycle Dashboard ──────────────── -->
         <section id="tab-battery" class="tab-pane active">
-            <div class="section-banner sec2">
-                <span class="section-badge">Section 2</span>
-                <div class="section-heading-text">
-                    <h2>Dynamic Battery Drive Cycle Simulation</h2>
-                    <p>High-frequency 2-RC Thevenin electrical &amp; thermal response under dynamic load, current, OCV, and SOC</p>
-                </div>
-            </div>
             {b_body}
         </section>
 
-        <!-- ── Section 3: HPPC Characterization Dashboard ────────────── -->
+        <!-- ── HPPC Characterization Dashboard ────────────── -->
         <section id="tab-hppc" class="tab-pane active">
-            <div class="section-banner sec3">
-                <span class="section-badge">Section 3</span>
-                <div class="section-heading-text">
-                    <h2>HPPC Pulse Characterization &amp; Parameter Identification</h2>
-                    <p>Hybrid Pulse Power Characterization test isolating instantaneous ohmic resistance and diffusion overpotentials</p>
-                </div>
-            </div>
             {h_body}
         </section>
 
-        <!-- ── Section 4: Viva Presentation & Academic Resources ─────── -->
+        <!-- ── Viva Presentation & Academic Resources ─────── -->
         <section id="tab-presentation" class="tab-pane active">
-            <div class="section-banner sec4">
-                <span class="section-badge">Section 4</span>
-                <div class="section-heading-text">
-                    <h2>Academic Defense, Presentation &amp; Documentation</h2>
-                    <p>Verified final-year EEE undergraduate dissertation deliverables, presentation deck, and audit reports</p>
+            <div class="header" style="margin-bottom: 20px;">
+                <div>
+                    <h1 style="font-size:20px; font-weight:700; color:var(--text-main); margin-bottom:4px;">Academic Defense, Presentation &amp; Documentation</h1>
+                    <p style="font-size:12px; color:var(--text-dim);">Verified final-year EEE undergraduate dissertation deliverables, presentation deck, and audit reports</p>
                 </div>
             </div>
 
