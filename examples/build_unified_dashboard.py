@@ -66,9 +66,22 @@ b_body = re.sub(r'<div id="batt_tooltip"[^>]*>.*?</div>', '', b_body, flags=re.D
 h_body = re.sub(r'<div id="hppc_tooltip"[^>]*>.*?</div>', '', h_body, flags=re.DOTALL)
 p_body = re.sub(r'<div id="p4_tooltip"[^>]*>.*?</div>', '', p_body, flags=re.DOTALL)
 
+def tune_chart_colors(script):
+    # Grid lines to warm subtle cream
+    script = script.replace("ctx.strokeStyle = '#1e293b'", "ctx.strokeStyle = '#ebdccb'")
+    script = script.replace("ctx.strokeStyle = '#334155'", "ctx.strokeStyle = '#ebdccb'")
+    # Zero lines
+    script = script.replace("ctx.strokeStyle = '#64748b'", "ctx.strokeStyle = '#c8bcab'")
+    # Axis labels to readable warm taupe
+    script = script.replace("ctx.fillStyle = '#64748b'", "ctx.fillStyle = '#78716c'")
+    script = script.replace("ctx.fillStyle = '#94a3b8'", "ctx.fillStyle = '#78716c'")
+    # Crosshair to deep charcoal
+    script = script.replace("ctx.strokeStyle = '#f8fafc'", "ctx.strokeStyle = '#332e29'")
+    return script
+
 # Prepare scoped scripts inside IIFEs
 b_raw = b_scripts[0] if b_scripts else ''
-b_clean = strip_window_listeners(prefix_script(b_raw, 'batt_'))
+b_clean = tune_chart_colors(strip_window_listeners(prefix_script(b_raw, 'batt_')))
 b_wrapped = f"""
 (() => {{
 {b_clean}
@@ -77,7 +90,7 @@ b_wrapped = f"""
 """
 
 h_raw = h_scripts[0] if h_scripts else ''
-h_clean = strip_window_listeners(prefix_script(h_raw, 'hppc_'))
+h_clean = tune_chart_colors(strip_window_listeners(prefix_script(h_raw, 'hppc_')))
 h_wrapped = f"""
 (() => {{
 {h_clean}
@@ -86,7 +99,7 @@ h_wrapped = f"""
 """
 
 p_raw = p_scripts[0] if p_scripts else ''
-p_clean = strip_window_listeners(prefix_script(p_raw, 'p4_'))
+p_clean = tune_chart_colors(strip_window_listeners(prefix_script(p_raw, 'p4_')))
 p_wrapped = f"""
 (() => {{
 {p_clean}
@@ -112,22 +125,31 @@ HTML = f"""<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battery Simulation Suite — Unified Single-Taskbar Dashboard</title>
     <style>
-        /* ── Global Reset & Variables ──────────────────────────────── */
+        /* ── Global Reset & Variables (Warm Sand & Cream Theme) ───────── */
         :root {{
-            --bg-base: #0b0f19;
-            --bg-card: #131b2e;
-            --bg-card-hover: #19233c;
-            --bg-subtle: #0f172a;
-            --border-dim: #1e293b;
-            --border-bright: #334155;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --text-muted: #64748b;
-            --cyan: #38bdf8;
-            --emerald: #10b981;
-            --amber: #f59e0b;
-            --rose: #ef4444;
-            --purple: #c084fc;
+            --bg-base: #fbf7ee;            /* Warm off-white / light cream linen base */
+            --bg-card: #ffffff;            /* Crisp clean white cards */
+            --bg-card-hover: #faf6ee;      /* Soft warm hover */
+            --bg-subtle: #f4eee2;          /* Subtle warm sand fill */
+            --border-dim: #e8ded0;         /* Soft warm card border */
+            --border-bright: #dbcebc;      /* Focused / highlighted border */
+            --text-main: #221e1b;          /* Deep warm espresso / charcoal */
+            --text-dim: #6e665d;           /* Warm taupe */
+            --text-muted: #8c827a;         /* Soft muted earth */
+            --cyan: #0284c7;               /* Deep vibrant sky blue */
+            --emerald: #16a34a;            /* Fresh leaf / emerald green (matches reference CTA) */
+            --amber: #d97706;              /* Warm rich amber */
+            --rose: #dc2626;               /* Clean crimson / rose */
+            --purple: #7c3aed;             /* Rich violet */
+            --blue: #2563eb;               /* Royal blue */
+
+            /* Sub-dashboard unified variables */
+            --bg-primary: #fbf7ee;
+            --accent-blue: #0284c7;
+            --accent-green: #16a34a;
+            --accent-orange: #d97706;
+            --accent-red: #dc2626;
+            --border: #e8ded0;
         }}
         * {{ margin:0; padding:0; box-sizing:border-box; }}
         html {{ scroll-behavior: smooth; }}
@@ -139,13 +161,13 @@ HTML = f"""<!DOCTYPE html>
             padding-bottom: 60px;
         }}
 
-        /* ── Top Navigation Bar (Single Merged Taskbar Header) ───────── */
+        /* ── Top Navigation Bar (Warm Minimalist Design) ───────────────── */
         .top-nav {{
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(11,15,25,0.96);
-            backdrop-filter: blur(12px);
+            background: rgba(251, 247, 238, 0.94);
+            backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border-dim);
             padding: 0 28px;
             display: flex;
@@ -153,19 +175,23 @@ HTML = f"""<!DOCTYPE html>
             justify-content: space-between;
             height: 58px;
             gap: 16px;
+            box-shadow: 0 2px 10px rgba(80, 65, 45, 0.03);
         }}
         .nav-brand {{
             font-size: 15px;
             font-weight: 800;
-            color: var(--cyan);
-            letter-spacing: -0.5px;
+            color: var(--text-main);
+            letter-spacing: -0.4px;
             white-space: nowrap;
             display: flex;
             align-items: center;
             gap: 8px;
             text-decoration: none;
         }}
-        .nav-brand svg {{ flex-shrink: 0; }}
+        .nav-brand svg {{
+            stroke: var(--emerald);
+            flex-shrink: 0;
+        }}
 
         /* ── Actions & Single Jump Menu ─────────────────────────────── */
         .nav-actions {{
@@ -178,36 +204,37 @@ HTML = f"""<!DOCTYPE html>
             display: inline-block;
         }}
         .single-jump-btn {{
-            background: var(--bg-card);
-            border: 1px solid var(--border-bright);
+            background: #ffffff;
+            border: 1px solid var(--border-dim);
             color: var(--text-dim);
-            padding: 6px 14px;
-            border-radius: 6px;
+            padding: 7px 16px;
+            border-radius: 9999px;
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 6px;
+            box-shadow: 0 2px 6px rgba(80, 65, 45, 0.04);
             transition: all 0.15s ease;
         }}
         .single-jump-btn:hover {{
-            color: var(--cyan);
-            border-color: var(--cyan);
+            color: var(--text-main);
+            border-color: var(--border-bright);
             background: var(--bg-card-hover);
         }}
         .single-jump-dropdown {{
             position: absolute;
             top: 100%;
             right: 0;
-            margin-top: 6px;
-            background: #131b2e;
-            border: 1px solid var(--border-bright);
-            border-radius: 8px;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.6);
+            margin-top: 8px;
+            background: #ffffff;
+            border: 1px solid var(--border-dim);
+            border-radius: 14px;
+            box-shadow: 0 12px 32px rgba(80, 65, 45, 0.12);
             display: none;
             flex-direction: column;
-            min-width: 250px;
+            min-width: 240px;
             overflow: hidden;
             z-index: 1001;
         }}
@@ -216,7 +243,7 @@ HTML = f"""<!DOCTYPE html>
             display: flex;
         }}
         .single-jump-item {{
-            padding: 10px 16px;
+            padding: 11px 18px;
             color: var(--text-main);
             text-decoration: none;
             font-size: 12px;
@@ -231,8 +258,8 @@ HTML = f"""<!DOCTYPE html>
             border-bottom: none;
         }}
         .single-jump-item:hover {{
-            background: rgba(56, 189, 248, 0.12);
-            color: var(--cyan);
+            background: var(--bg-card-hover);
+            color: var(--emerald);
         }}
 
         .nav-status {{
@@ -263,13 +290,87 @@ HTML = f"""<!DOCTYPE html>
             padding: 24px 32px;
             display: flex;
             flex-direction: column;
-            gap: 48px;
+            gap: 44px;
         }}
 
         /* All tab panes permanently visible */
         .tab-pane {{
             display: block !important;
             scroll-margin-top: 75px;
+        }}
+
+        /* ── Card Styling & Theme Overrides ─────────────────────────── */
+        .kpi-card, .chart-card, .table-card, .chart-container, .analysis-card {{
+            background: #ffffff !important;
+            border: 1px solid var(--border-dim) !important;
+            border-radius: 16px !important;
+            box-shadow: 0 3px 14px rgba(70, 55, 40, 0.04) !important;
+        }}
+        .analysis-card {{
+            background: #ffffff !important;
+        }}
+        .tag-info {{ background: #e0f2fe !important; color: #0369a1 !important; border: 1px solid #bae6fd !important; border-radius: 9999px !important; }}
+        .tag-warning {{ background: #fef3c7 !important; color: #b45309 !important; border: 1px solid #fde68a !important; border-radius: 9999px !important; }}
+        .tag-critical {{ background: #fee2e2 !important; color: #b91c1c !important; border: 1px solid #fecaca !important; border-radius: 9999px !important; }}
+        .tag-fault {{ background: #fee2e2 !important; color: #b91c1c !important; border: 1px solid #f87171 !important; border-radius: 9999px !important; }}
+        .tag-monitor-adaptive {{ background: #dcfce7 !important; color: #15803d !important; border: 1px solid #bbf7d0 !important; border-radius: 9999px !important; }}
+        .tag-monitor-fixed {{ background: #fef3c7 !important; color: #b45309 !important; border: 1px solid #fde68a !important; border-radius: 9999px !important; }}
+        .badge {{ background: #f4eee2 !important; color: var(--text-main) !important; border: 1px solid var(--border-dim) !important; border-radius: 9999px !important; }}
+        .offline-tag {{ background: #dcfce7 !important; color: #15803d !important; border: 1px solid #bbf7d0 !important; padding: 4px 10px !important; border-radius: 9999px !important; }}
+        
+        .nav-btn {{
+            background: #ffffff !important;
+            border: 1px solid var(--border-dim) !important;
+            color: var(--text-dim) !important;
+            border-radius: 9999px !important;
+            font-weight: 500 !important;
+            box-shadow: 0 2px 6px rgba(70, 55, 40, 0.03) !important;
+            transition: all 0.15s ease !important;
+        }}
+        .nav-btn:hover {{
+            background: var(--bg-card-hover) !important;
+            color: var(--text-main) !important;
+            border-color: var(--border-bright) !important;
+        }}
+        .filter-btn {{
+            background: #ffffff !important;
+            border: 1px solid var(--border-dim) !important;
+            color: var(--text-dim) !important;
+            border-radius: 9999px !important;
+            font-weight: 500 !important;
+            padding: 6px 14px !important;
+            transition: all 0.15s ease !important;
+        }}
+        .filter-btn:hover {{
+            background: var(--bg-card-hover) !important;
+            color: var(--text-main) !important;
+        }}
+        .filter-btn.active {{
+            background: var(--emerald) !important;
+            color: #ffffff !important;
+            border-color: var(--emerald) !important;
+            font-weight: 600 !important;
+            box-shadow: 0 2px 8px rgba(22, 163, 74, 0.25) !important;
+        }}
+        
+        .table-wrap {{
+            border-radius: 14px !important;
+            overflow: hidden !important;
+            border: 1px solid var(--border-dim) !important;
+        }}
+        .alerts-table thead th {{
+            background: #f4eee2 !important;
+            color: var(--text-main) !important;
+            border-bottom: 1px solid var(--border-dim) !important;
+        }}
+        .alerts-table tbody tr {{
+            border-bottom: 1px solid var(--border-dim) !important;
+        }}
+        .alerts-table tbody tr:hover {{
+            background: #faf6ee !important;
+        }}
+        .alerts-table td {{
+            color: var(--text-main) !important;
         }}
 
         /* ── Documentation & Presentation Cards ─────────────────────── */
@@ -280,29 +381,34 @@ HTML = f"""<!DOCTYPE html>
             margin-top: 14px;
         }}
         .doc-card {{
-            background: var(--bg-card);
+            background: #ffffff;
             border: 1px solid var(--border-dim);
-            border-radius: 8px;
-            padding: 16px 20px;
+            border-radius: 16px;
+            padding: 18px 22px;
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
             gap: 8px;
+            box-shadow: 0 3px 14px rgba(70, 55, 40, 0.04);
             transition: all 0.15s ease;
         }}
         .doc-card:hover {{
-            background: var(--bg-card-hover);
-            border-color: var(--cyan);
+            background: #ffffff;
+            border-color: var(--emerald);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(70, 55, 40, 0.08);
         }}
         .doc-card-title {{
             font-size: 14px;
             font-weight: 700;
-            color: var(--cyan);
+            color: var(--text-main);
             display: flex;
             align-items: center;
             justify-content: space-between;
+        }}
+        .doc-card-title span:last-child {{
+            color: var(--emerald);
         }}
         .doc-card-desc {{
             font-size: 12px;
@@ -314,15 +420,15 @@ HTML = f"""<!DOCTYPE html>
         #global_tooltip {{
             position: fixed;
             display: none;
-            background: rgba(15,23,42,0.97);
-            border: 1px solid var(--border-bright);
+            background: rgba(34, 30, 27, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             padding: 9px 14px;
-            border-radius: 7px;
+            border-radius: 8px;
             font-size: 11.5px;
-            color: var(--text-main);
+            color: #fbf7ee;
             pointer-events: none;
             z-index: 9999;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.6);
+            box-shadow: 0 12px 28px rgba(40, 30, 20, 0.18);
             line-height: 1.55;
             white-space: nowrap;
             max-width: 320px;
