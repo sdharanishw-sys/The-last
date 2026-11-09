@@ -486,9 +486,6 @@ HTML = f"""<!DOCTYPE html>
                     <a class="single-jump-item" href="#tab-hppc" data-tab="tab-hppc" onclick="scrollToSection('tab-hppc', event)">
                         <span>HPPC Characterization</span>
                     </a>
-                    <a class="single-jump-item" href="#tab-presentation" data-tab="tab-presentation" onclick="scrollToSection('tab-presentation', event)">
-                        <span>Viva &amp; Dissertation</span>
-                    </a>
                 </div>
             </div>
 
@@ -516,54 +513,8 @@ HTML = f"""<!DOCTYPE html>
             {h_body}
         </section>
 
-        <!-- ── Viva Presentation & Academic Resources ─────── -->
-        <section id="tab-presentation" class="tab-pane active">
-            <div class="header" style="margin-bottom: 20px;">
-                <div>
-                    <h1 style="font-size:20px; font-weight:700; color:var(--text-main); margin-bottom:4px;">Academic Defense, Presentation &amp; Documentation</h1>
-                    <p style="font-size:12px; color:var(--text-dim);">Verified final-year EEE undergraduate dissertation deliverables, presentation deck, and audit reports</p>
-                </div>
-            </div>
-
-            <div class="doc-cards-grid">
-                <a href="/docs/viva_presentation_10_slides.html" target="_blank" class="doc-card">
-                    <div class="doc-card-title">
-                        <span>📊 10-Slide Interactive Viva Voce Defense Deck</span>
-                        <span>↗</span>
-                    </div>
-                    <div class="doc-card-desc">
-                        Full-screen presentation with oral speaker notes on every slide, mathematical derivations, 100-scenario benchmark cards, and examiner Q&amp;A prep.
-                    </div>
-                </a>
-                <a href="/docs/academic_report_chapters_3_4_5.md" target="_blank" class="doc-card">
-                    <div class="doc-card-title">
-                        <span>📄 Academic Dissertation Chapters 3, 4, and 5</span>
-                        <span>↗</span>
-                    </div>
-                    <div class="doc-card-desc">
-                        Undergraduate engineering dissertation text with 2-RC state space equations, monotone Hermite splines, 95% Wilson confidence intervals, and thermal limitation analysis.
-                    </div>
-                </a>
-                <a href="/docs/facts_to_verify_before_submission.md" target="_blank" class="doc-card">
-                    <div class="doc-card-title">
-                        <span>✅ Pre-Submission Student Verification Checklist</span>
-                        <span>↗</span>
-                    </div>
-                    <div class="doc-card-desc">
-                        Comprehensive checklist for institutional placeholders, supervisor designations, simulation boundary declarations, and numerical audit checks.
-                    </div>
-                </a>
-                <a href="/audit_verification_results.json" target="_blank" class="doc-card">
-                    <div class="doc-card-title">
-                        <span>📈 Raw Benchmark Dataset (audit_verification_results.json)</span>
-                        <span>↗</span>
-                    </div>
-                    <div class="doc-card-desc">
-                        Machine-readable JSON data containing the 100-scenario held-out evaluation matrix, 5x5 confusion matrix, and condition breakdown.
-                    </div>
-                </a>
-            </div>
-        </section>
+        <!-- Hidden placeholder for backwards compatibility -->
+        <div id="tab-presentation" style="display:none;"></div>
 
     </div>
 
