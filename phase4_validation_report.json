@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp": 1793167175.8498118,
+    "timestamp": 1794216371.7280602,
     "cell_id": "NMC-PHASE4-REF",
     "chemistry": "NMC Lithium-Ion",
     "benchmark_scenarios_count": 7
@@ -22,8 +22,8 @@
     "fixed_monitor_tripped": false,
     "adaptive_monitor_tripped": true,
     "adaptive_attributed_cause": "INCREASED_RESISTANCE",
-    "adaptive_confidence_pct": 98.7,
-    "adaptive_severity": "+13.8 mOhm internal resistance increase (+49.5% vs baseline)"
+    "adaptive_confidence_pct": 98.2,
+    "adaptive_severity": "+10.5 mOhm internal resistance increase (+37.8% vs baseline)"
   },
   "scenarios": [
     {
