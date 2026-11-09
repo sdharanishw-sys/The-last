@@ -217,11 +217,56 @@ generate_phase4_dashboard(
 
 ---
 
-## 📚 Academic Documentation & Dissertation Chapters (`docs/`)
+## 📚 Academic Documentation & Dissertation Chapters
 
-The repository includes complete, mathematically rigorous academic documentation and demonstration guides for final-year engineering dissertation submission:
+The repository is organized into 7 clearly categorized modules:
 
-- **[Academic Dissertation Chapters 3, 4, and 5](docs/academic_report_chapters_3_4_5.md):** Formal undergraduate Electrical & Electronics Engineering (EEE) thesis chapters:
+```text
+The-last/
+├── 1. Root Application & Live Dashboard/
+│   ├── index.html                     # Canonical unified 1-hour interactive simulation dashboard
+│   ├── serve.py                       # Local multi-threaded HTTP server daemon (port 8000)
+│   └── requirements.txt               # Dependencies
+├── 2. Verification & Automated Audit Harnesses/
+│   ├── demonstrate_flows.py           # End-to-end multi-phase simulation runner
+│   ├── verification_suite.py          # 100-scenario statistical validation suite
+│   └── browser_audit.py               # Automated headless Chrome CDP health-check
+├── 3. Simulation Datasets & Telemetry Baselines/
+│   ├── CELL-NMC-001_baseline.json     # Reference fresh cell baseline calibration
+│   ├── CELL-NMC-AGED_baseline.json    # Aged cell degradation baseline
+│   ├── audit_verification_results.json# 100-scenario held-out evaluation matrix
+│   ├── phase4_alerts.csv              # 1-hour physical anomaly alert log (1,231 events)
+│   ├── drive_cycle_telemetry.csv      # Dynamic drive cycle current & voltage profile
+│   ├── hppc_telemetry.csv             # HPPC test telemetry profile
+│   └── battery_telemetry.csv          # Sample cell telemetry
+├── 4. Core Simulation Package/
+│   └── battery_sim/                   # Core physics-informed 2-RC model package
+├── 5. Executable Examples/
+│   ├── build_unified_dashboard.py     # Compiles unified offline dashboard
+│   ├── run_phase4_dashboard.py        # 1-hour Phase 4 adaptive diagnostic simulation
+│   ├── run_drive_cycle.py             # 1-hour drive cycle terminal dynamics
+│   ├── run_phase2_reference_model.py  # Reference model vs degraded cell comparison
+│   ├── run_phase3_fault_attribution.py# Multi-parameter fault isolation
+│   ├── run_hppc_pulse.py              # HPPC pulse characterization tests
+│   ├── run_pack_balancing.py          # Multi-cell passive balancing
+│   └── run_temp_sweep.py              # Temperature sweep evaluation
+├── 6. Test Suite/
+│   ├── test_battery_sim.py            # Physics equations & ECM unit tests
+│   ├── test_fault_attribution.py      # Anomaly scoring & attribution unit tests
+│   └── test_validation_benchmark.py   # Benchmark regression tests
+└── 7. Documentation, Viva Slides & Assets/
+    ├── academic_report_chapters_3_4_5.md
+    ├── bms_dashboard_demonstration_guide.md
+    ├── facts_to_verify_before_submission.md
+    ├── viva_presentation_10_slides.html
+    ├── viva_presentation_10_slides.md
+    ├── pipeline_architecture.png
+    ├── Elegant Mathematical Equation.png
+    ├── Neon Battery Safety Processing Pipeline.png
+    └── screenshots/
+```
+
+- **[Academic Dissertation Chapters 3, 4, and 5](7.%20Documentation,%20Viva%20Slides%20&%20Assets/academic_report_chapters_3_4_5.md):** Formal undergraduate Electrical & Electronics Engineering (EEE) thesis chapters:
   - *Chapter 3:* 2-RC Thevenin state-space equations, Fritsch-Carlson monotone cubic spline interpolation, Arrhenius temperature kinetics, lumped 1-D thermal model, 4-stage personalized baseline calibration, resting dwell polarization compensation, and BMS safety supervisor cutoffs.
   - *Chapter 4:* 100-scenario held-out benchmark ($N=100$, seeds 2000–2099) results, multi-class confusion matrix, two-sided 95% Wilson confidence intervals, and detailed physical analysis of the 6/16 thermal fault detection rate ($\tau_{\text{th}} = 780\text{ s}$).
   - *Chapter 5:* Declaration of synthetic software simulation digital twin, physical modeling assumptions (1-D lumped thermal, ECM vs DFN), failure modes, and hardware implementation roadmap (C99 on ARM Cortex-M4/M7, Analog Front-End ICs, Dual UKF, ISO 26262 ASIL).
