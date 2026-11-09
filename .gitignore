@@ -1,4 +1,4 @@
-﻿# Python
+# Python
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -17,6 +17,11 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
+shot*.png
+shot.png
+take_*.py
+test_patch.py
+check_match.py
 
 # Existing nested Git repository
 The last/
