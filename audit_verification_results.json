@@ -1,0 +1,1136 @@
+{
+  "phase2_driver_personality": {
+    "Aggressive/Sport": {
+      "runs": [
+        {
+          "seed": 1,
+          "adaptive_fault": "NOMINAL",
+          "adaptive_conf": 100.0,
+          "adaptive_alerts": 97,
+          "adaptive_false_alarm": false,
+          "fixed_alerts": 0,
+          "fixed_false_alarm": false,
+          "max_v_res_mv": 17.15,
+          "mean_v_res_mv": 0.43
+        },
+        {
+          "seed": 42,
+          "adaptive_fault": "NOMINAL",
+          "adaptive_conf": 100.0,
+          "adaptive_alerts": 98,
+          "adaptive_false_alarm": false,
+          "fixed_alerts": 0,
+          "fixed_false_alarm": false,
+          "max_v_res_mv": 15.82,
+          "mean_v_res_mv": 0.5
+        },
+        {
+          "seed": 100,
+          "adaptive_fault": "NOMINAL",
+          "adaptive_conf": 100.0,
+          "adaptive_alerts": 96,
+          "adaptive_false_alarm": false,
+          "fixed_alerts": 0,
+          "fixed_false_alarm": false,
+          "max_v_res_mv": 13.64,
+          "mean_v_res_mv": 0.37
+        }
+      ],
+      "false_positive_rate_pct": 0.0,
+      "attribution": "NOMINAL"
+    },
+    "Eco/Conservative": {
+      "runs": [
+        {
+          "seed": 1,
+          "adaptive_fault": "NOMINAL",
+          "adaptive_conf": 100.0,
+          "adaptive_alerts": 0,
+          "adaptive_false_alarm": false,
+          "fixed_alerts": 0,
+          "fixed_false_alarm": false,
+          "max_v_res_mv": 3.03,
+          "mean_v_res_mv": 0.04
+        },
+        {
+          "seed": 42,
+          "adaptive_fault": "NOMINAL",
+          "adaptive_conf": 100.0,
+          "adaptive_alerts": 0,
+          "adaptive_false_alarm": false,
+          "fixed_alerts": 0,
+          "fixed_false_alarm": false,
+          "max_v_res_mv": 3.69,
+          "mean_v_res_mv": 0.12
+        },
+        {
+          "seed": 100,
+          "adaptive_fault": "NOMINAL",
+          "adaptive_conf": 100.0,
+          "adaptive_alerts": 0,
+          "adaptive_false_alarm": false,
+          "fixed_alerts": 0,
+          "fixed_false_alarm": false,
+          "max_v_res_mv": 4.63,
+          "mean_v_res_mv": -0.01
+        }
+      ],
+      "false_positive_rate_pct": 0.0,
+      "attribution": "NOMINAL"
+    },
+    "Stop-and-Go Urban": {
+      "runs": [
+        {
+          "seed": 1,
+          "adaptive_fault": "NOMINAL",
+          "adaptive_conf": 100.0,
+          "adaptive_alerts": 45,
+          "adaptive_false_alarm": false,
+          "fixed_alerts": 0,
+          "fixed_false_alarm": false,
+          "max_v_res_mv": 8.9,
+          "mean_v_res_mv": 0.15
+        },
+        {
+          "seed": 42,
+          "adaptive_fault": "NOMINAL",
+          "adaptive_conf": 100.0,
+          "adaptive_alerts": 45,
+          "adaptive_false_alarm": false,
+          "fixed_alerts": 0,
+          "fixed_false_alarm": false,
+          "max_v_res_mv": 7.21,
+          "mean_v_res_mv": 0.22
+        },
+        {
+          "seed": 100,
+          "adaptive_fault": "NOMINAL",
+          "adaptive_conf": 100.0,
+          "adaptive_alerts": 45,
+          "adaptive_false_alarm": false,
+          "fixed_alerts": 0,
+          "fixed_false_alarm": false,
+          "max_v_res_mv": 8.59,
+          "mean_v_res_mv": 0.11
+        }
+      ],
+      "false_positive_rate_pct": 0.0,
+      "attribution": "NOMINAL"
+    }
+  },
+  "phase3_anti_corruption": {
+    "Sustained Ohmic (+12 mOhm)": {
+      "r0_initial_mohm": 27.85,
+      "r0_final_mohm": 27.85,
+      "r0_drift_mohm": 0.0,
+      "cap_initial_ah": 3.0417,
+      "cap_final_ah": 3.0417,
+      "cap_drift_ah": 0.0,
+      "diagnosis": "INCREASED_RESISTANCE",
+      "confidence": 98.4,
+      "snapshots": [
+        {
+          "time_s": 300.0,
+          "r0_baseline_mohm": 27.85,
+          "cap_baseline_ah": 3.0417,
+          "alerts_count": 333
+        },
+        {
+          "time_s": 600.0,
+          "r0_baseline_mohm": 27.85,
+          "cap_baseline_ah": 3.0417,
+          "alerts_count": 685
+        },
+        {
+          "time_s": 1200.0,
+          "r0_baseline_mohm": 27.85,
+          "cap_baseline_ah": 3.0417,
+          "alerts_count": 1513
+        },
+        {
+          "time_s": 1800.0,
+          "r0_baseline_mohm": 27.85,
+          "cap_baseline_ah": 3.0417,
+          "alerts_count": 2381
+        }
+      ]
+    },
+    "Sustained Voltage Bias (+25 mV)": {
+      "r0_initial_mohm": 27.85,
+      "r0_final_mohm": 27.85,
+      "r0_drift_mohm": 0.0,
+      "cap_initial_ah": 3.0417,
+      "cap_final_ah": 3.0417,
+      "cap_drift_ah": 0.0,
+      "diagnosis": "VOLTAGE_SENSOR_BIAS",
+      "confidence": 98.5,
+      "snapshots": [
+        {
+          "time_s": 300.0,
+          "r0_baseline_mohm": 27.85,
+          "cap_baseline_ah": 3.0417,
+          "alerts_count": 38
+        },
+        {
+          "time_s": 600.0,
+          "r0_baseline_mohm": 27.85,
+          "cap_baseline_ah": 3.0417,
+          "alerts_count": 79
+        },
+        {
+          "time_s": 1200.0,
+          "r0_baseline_mohm": 27.85,
+          "cap_baseline_ah": 3.0417,
+          "alerts_count": 338
+        },
+        {
+          "time_s": 1800.0,
+          "r0_baseline_mohm": 27.85,
+          "cap_baseline_ah": 3.0417,
+          "alerts_count": 738
+        }
+      ]
+    }
+  },
+  "phase4_boundary_sweeps": {
+    "resistance_sweep": [
+      {
+        "injected_mohm": 2,
+        "attributed": "NOMINAL",
+        "conf": 100.0,
+        "ttd_s": 66.0
+      },
+      {
+        "injected_mohm": 4,
+        "attributed": "NOMINAL",
+        "conf": 100.0,
+        "ttd_s": 64.0
+      },
+      {
+        "injected_mohm": 6,
+        "attributed": "NOMINAL",
+        "conf": 100.0,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mohm": 8,
+        "attributed": "INCREASED_RESISTANCE",
+        "conf": 97.6,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mohm": 10,
+        "attributed": "INCREASED_RESISTANCE",
+        "conf": 98.2,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mohm": 12,
+        "attributed": "INCREASED_RESISTANCE",
+        "conf": 98.5,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mohm": 14,
+        "attributed": "INCREASED_RESISTANCE",
+        "conf": 98.7,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mohm": 16,
+        "attributed": "INCREASED_RESISTANCE",
+        "conf": 98.9,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mohm": 18,
+        "attributed": "INCREASED_RESISTANCE",
+        "conf": 99.0,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mohm": 20,
+        "attributed": "INCREASED_RESISTANCE",
+        "conf": 99.1,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mohm": 22,
+        "attributed": "INCREASED_RESISTANCE",
+        "conf": 99.2,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mohm": 24,
+        "attributed": "INCREASED_RESISTANCE",
+        "conf": 99.3,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mohm": 26,
+        "attributed": "INCREASED_RESISTANCE",
+        "conf": 99.3,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mohm": 28,
+        "attributed": "INCREASED_RESISTANCE",
+        "conf": 99.4,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mohm": 30,
+        "attributed": "INCREASED_RESISTANCE",
+        "conf": 99.4,
+        "ttd_s": 2.0
+      }
+    ],
+    "voltage_bias_sweep": [
+      {
+        "injected_mv": 5,
+        "attributed": "NOMINAL",
+        "conf": 100.0,
+        "ttd_s": 66.0
+      },
+      {
+        "injected_mv": 10,
+        "attributed": "NOMINAL",
+        "conf": 100.0,
+        "ttd_s": 66.0
+      },
+      {
+        "injected_mv": 15,
+        "attributed": "NOMINAL",
+        "conf": 100.0,
+        "ttd_s": 66.0
+      },
+      {
+        "injected_mv": 20,
+        "attributed": "VOLTAGE_SENSOR_BIAS",
+        "conf": 98.0,
+        "ttd_s": 64.0
+      },
+      {
+        "injected_mv": 25,
+        "attributed": "VOLTAGE_SENSOR_BIAS",
+        "conf": 98.5,
+        "ttd_s": 64.0
+      },
+      {
+        "injected_mv": 30,
+        "attributed": "VOLTAGE_SENSOR_BIAS",
+        "conf": 98.7,
+        "ttd_s": 64.0
+      },
+      {
+        "injected_mv": 35,
+        "attributed": "VOLTAGE_SENSOR_BIAS",
+        "conf": 98.9,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mv": 40,
+        "attributed": "VOLTAGE_SENSOR_BIAS",
+        "conf": 99.1,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mv": 45,
+        "attributed": "VOLTAGE_SENSOR_BIAS",
+        "conf": 99.2,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mv": 50,
+        "attributed": "VOLTAGE_SENSOR_BIAS",
+        "conf": 99.3,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mv": 55,
+        "attributed": "VOLTAGE_SENSOR_BIAS",
+        "conf": 99.3,
+        "ttd_s": 2.0
+      },
+      {
+        "injected_mv": 60,
+        "attributed": "VOLTAGE_SENSOR_BIAS",
+        "conf": 99.4,
+        "ttd_s": 2.0
+      }
+    ],
+    "cooling_sweep": [
+      {
+        "cooling_factor": 0.9,
+        "attributed": "TEMPERATURE_RISE",
+        "conf": 98.6,
+        "ttd_s": 66.0
+      },
+      {
+        "cooling_factor": 0.8,
+        "attributed": "TEMPERATURE_RISE",
+        "conf": 98.6,
+        "ttd_s": 66.0
+      },
+      {
+        "cooling_factor": 0.7,
+        "attributed": "TEMPERATURE_RISE",
+        "conf": 98.6,
+        "ttd_s": 66.0
+      },
+      {
+        "cooling_factor": 0.6,
+        "attributed": "TEMPERATURE_RISE",
+        "conf": 98.6,
+        "ttd_s": 66.0
+      },
+      {
+        "cooling_factor": 0.5,
+        "attributed": "TEMPERATURE_RISE",
+        "conf": 98.7,
+        "ttd_s": 66.0
+      },
+      {
+        "cooling_factor": 0.4,
+        "attributed": "TEMPERATURE_RISE",
+        "conf": 98.7,
+        "ttd_s": 66.0
+      },
+      {
+        "cooling_factor": 0.3,
+        "attributed": "TEMPERATURE_RISE",
+        "conf": 98.7,
+        "ttd_s": 66.0
+      },
+      {
+        "cooling_factor": 0.2,
+        "attributed": "TEMPERATURE_RISE",
+        "conf": 98.7,
+        "ttd_s": 66.0
+      },
+      {
+        "cooling_factor": 0.1,
+        "attributed": "TEMPERATURE_RISE",
+        "conf": 98.8,
+        "ttd_s": 66.0
+      }
+    ],
+    "capacity_sweep": [
+      {
+        "retention_factor": 0.98,
+        "loss_pct": 2.0,
+        "attributed": "NOMINAL",
+        "conf": 100.0,
+        "ttd_s": 66.0
+      },
+      {
+        "retention_factor": 0.95,
+        "loss_pct": 5.0,
+        "attributed": "NOMINAL",
+        "conf": 100.0,
+        "ttd_s": 66.0
+      },
+      {
+        "retention_factor": 0.92,
+        "loss_pct": 8.0,
+        "attributed": "CAPACITY_FADE",
+        "conf": 97.6,
+        "ttd_s": 66.0
+      },
+      {
+        "retention_factor": 0.9,
+        "loss_pct": 10.0,
+        "attributed": "CAPACITY_FADE",
+        "conf": 98.0,
+        "ttd_s": 66.0
+      },
+      {
+        "retention_factor": 0.85,
+        "loss_pct": 15.0,
+        "attributed": "CAPACITY_FADE",
+        "conf": 98.7,
+        "ttd_s": 66.0
+      },
+      {
+        "retention_factor": 0.8,
+        "loss_pct": 20.0,
+        "attributed": "CAPACITY_FADE",
+        "conf": 99.0,
+        "ttd_s": 66.0
+      },
+      {
+        "retention_factor": 0.75,
+        "loss_pct": 25.0,
+        "attributed": "CAPACITY_FADE",
+        "conf": 99.2,
+        "ttd_s": 66.0
+      }
+    ]
+  },
+  "phase5_noise_robustness": {
+    "Baseline": {
+      "noise_params": {
+        "std_v": 0.002,
+        "std_i": 0.02,
+        "std_t": 0.2
+      },
+      "accuracy_pct": 100.0,
+      "details": [
+        {
+          "scenario": "Nominal",
+          "ground_truth": "NOMINAL",
+          "attributed": "NOMINAL",
+          "confidence": 100.0,
+          "is_correct": true,
+          "v_rms_residual_mv": 4.12
+        },
+        {
+          "scenario": "Resistance +20mOhm",
+          "ground_truth": "INCREASED_RESISTANCE",
+          "attributed": "INCREASED_RESISTANCE",
+          "confidence": 99.1,
+          "is_correct": true,
+          "v_rms_residual_mv": 51.43
+        },
+        {
+          "scenario": "Voltage Bias +40mV",
+          "ground_truth": "VOLTAGE_SENSOR_BIAS",
+          "attributed": "VOLTAGE_SENSOR_BIAS",
+          "confidence": 99.1,
+          "is_correct": true,
+          "v_rms_residual_mv": 40.88
+        },
+        {
+          "scenario": "Thermal Rise",
+          "ground_truth": "TEMPERATURE_RISE",
+          "attributed": "TEMPERATURE_RISE",
+          "confidence": 98.8,
+          "is_correct": true,
+          "v_rms_residual_mv": 3.8
+        },
+        {
+          "scenario": "Capacity Fade 20%",
+          "ground_truth": "CAPACITY_FADE",
+          "attributed": "CAPACITY_FADE",
+          "confidence": 99.0,
+          "is_correct": true,
+          "v_rms_residual_mv": 4.19
+        }
+      ]
+    },
+    "Elevated": {
+      "noise_params": {
+        "std_v": 0.006,
+        "std_i": 0.06,
+        "std_t": 0.6
+      },
+      "accuracy_pct": 100.0,
+      "details": [
+        {
+          "scenario": "Nominal",
+          "ground_truth": "NOMINAL",
+          "attributed": "NOMINAL",
+          "confidence": 100.0,
+          "is_correct": true,
+          "v_rms_residual_mv": 7.0
+        },
+        {
+          "scenario": "Resistance +20mOhm",
+          "ground_truth": "INCREASED_RESISTANCE",
+          "attributed": "INCREASED_RESISTANCE",
+          "confidence": 99.1,
+          "is_correct": true,
+          "v_rms_residual_mv": 51.88
+        },
+        {
+          "scenario": "Voltage Bias +40mV",
+          "ground_truth": "VOLTAGE_SENSOR_BIAS",
+          "attributed": "VOLTAGE_SENSOR_BIAS",
+          "confidence": 99.1,
+          "is_correct": true,
+          "v_rms_residual_mv": 41.25
+        },
+        {
+          "scenario": "Thermal Rise",
+          "ground_truth": "TEMPERATURE_RISE",
+          "attributed": "TEMPERATURE_RISE",
+          "confidence": 98.8,
+          "is_correct": true,
+          "v_rms_residual_mv": 6.74
+        },
+        {
+          "scenario": "Capacity Fade 20%",
+          "ground_truth": "CAPACITY_FADE",
+          "attributed": "CAPACITY_FADE",
+          "confidence": 99.0,
+          "is_correct": true,
+          "v_rms_residual_mv": 7.04
+        }
+      ]
+    },
+    "Harsh": {
+      "noise_params": {
+        "std_v": 0.01,
+        "std_i": 0.1,
+        "std_t": 1.0
+      },
+      "accuracy_pct": 100.0,
+      "details": [
+        {
+          "scenario": "Nominal",
+          "ground_truth": "NOMINAL",
+          "attributed": "NOMINAL",
+          "confidence": 100.0,
+          "is_correct": true,
+          "v_rms_residual_mv": 10.66
+        },
+        {
+          "scenario": "Resistance +20mOhm",
+          "ground_truth": "INCREASED_RESISTANCE",
+          "attributed": "INCREASED_RESISTANCE",
+          "confidence": 99.1,
+          "is_correct": true,
+          "v_rms_residual_mv": 52.62
+        },
+        {
+          "scenario": "Voltage Bias +40mV",
+          "ground_truth": "VOLTAGE_SENSOR_BIAS",
+          "attributed": "VOLTAGE_SENSOR_BIAS",
+          "confidence": 99.0,
+          "is_correct": true,
+          "v_rms_residual_mv": 42.01
+        },
+        {
+          "scenario": "Thermal Rise",
+          "ground_truth": "TEMPERATURE_RISE",
+          "attributed": "TEMPERATURE_RISE",
+          "confidence": 98.8,
+          "is_correct": true,
+          "v_rms_residual_mv": 10.38
+        },
+        {
+          "scenario": "Capacity Fade 20%",
+          "ground_truth": "CAPACITY_FADE",
+          "attributed": "CAPACITY_FADE",
+          "confidence": 99.0,
+          "is_correct": true,
+          "v_rms_residual_mv": 10.68
+        }
+      ]
+    }
+  },
+  "phase6_compound_faults": {
+    "Case A: Resistance + Cold (-10C)": {
+      "attributed_primary": "INCREASED_RESISTANCE",
+      "confidence_pct": 99.4,
+      "severity_estimate": "+46.9 mOhm internal resistance increase (+168.4% vs baseline)",
+      "hypotheses_scores": {
+        "NOMINAL": 0.0064,
+        "INCREASED_RESISTANCE": 0.9936,
+        "TEMPERATURE_RISE": 0.0,
+        "CAPACITY_FADE": 0.0,
+        "VOLTAGE_SENSOR_BIAS": 0.0
+      },
+      "mean_anomaly_score": 0.846,
+      "max_anomaly_score": 1.0,
+      "alerts_count": 438
+    },
+    "Case B: Voltage Bias (+30mV) + Capacity Loss (15%)": {
+      "attributed_primary": "VOLTAGE_SENSOR_BIAS",
+      "confidence_pct": 50.6,
+      "severity_estimate": "+28.0 mV constant voltage sensor calibration offset",
+      "hypotheses_scores": {
+        "NOMINAL": 0.0065,
+        "INCREASED_RESISTANCE": 0.0,
+        "TEMPERATURE_RISE": 0.0,
+        "CAPACITY_FADE": 0.4876,
+        "VOLTAGE_SENSOR_BIAS": 0.506
+      },
+      "mean_anomaly_score": 0.338,
+      "max_anomaly_score": 0.642,
+      "alerts_count": 67
+    },
+    "Case C: Cooling Loss (50%) + Aggressive Drive": {
+      "attributed_primary": "TEMPERATURE_RISE",
+      "confidence_pct": 98.2,
+      "severity_estimate": "+4.4 deg C average thermal excess above convective equilibrium (peak +16.8 deg C)",
+      "hypotheses_scores": {
+        "NOMINAL": 0.018,
+        "INCREASED_RESISTANCE": 0.0,
+        "TEMPERATURE_RISE": 0.982,
+        "CAPACITY_FADE": 0.0,
+        "VOLTAGE_SENSOR_BIAS": 0.0
+      },
+      "mean_anomaly_score": 0.479,
+      "max_anomaly_score": 0.587,
+      "alerts_count": 158
+    }
+  },
+  "phase7_safety_supervisor": {
+    "over_temp_passed": true,
+    "under_voltage_passed": true,
+    "subzero_charge_passed": true
+  },
+  "phase8_9_evaluation": {
+    "deterministic": true,
+    "summary": {
+      "adaptive_acc": 100.0,
+      "fixed_acc": 28.6,
+      "adaptive_precision": 100.0,
+      "fixed_precision": 50.0,
+      "adaptive_sensitivity_recall": 100.0,
+      "fixed_sensitivity_recall": 20.0,
+      "adaptive_specificity": 100.0,
+      "fixed_specificity": 50.0,
+      "adaptive_fpr": 0.0,
+      "fixed_fpr": 50.0,
+      "adaptive_fnr": 0.0,
+      "fixed_fnr": 80.0,
+      "adaptive_attr": 100.0,
+      "fixed_attr": 0.0,
+      "confidence_intervals_95": {
+        "adaptive_accuracy_95ci": [
+          0.6456695649333126,
+          1.0
+        ],
+        "adaptive_specificity_95ci": [
+          0.34238022750665303,
+          1.0
+        ],
+        "adaptive_sensitivity_95ci": [
+          0.5655175352168251,
+          1.0
+        ],
+        "fixed_accuracy_95ci": [
+          0.08221892400405678,
+          0.6410655481673808
+        ],
+        "fixed_specificity_95ci": [
+          0.09453120573423074,
+          0.9054687942657693
+        ],
+        "fixed_sensitivity_95ci": [
+          0.03622410863243014,
+          0.6244653702374747
+        ]
+      }
+    }
+  },
+  "phase10_telemetry_integrity": {
+    "all_passed": true,
+    "fixed_results": {
+      "Voltage_NaN": "PASS",
+      "Voltage_+Infinity": "PASS",
+      "Voltage_-Infinity": "PASS",
+      "Current_NaN": "PASS",
+      "Current_+Infinity": "PASS",
+      "Current_-Infinity": "PASS",
+      "Temperature_NaN": "PASS",
+      "Temperature_+Infinity": "PASS",
+      "Temperature_-Infinity": "PASS"
+    },
+    "adapt_results": {
+      "Voltage_NaN": "PASS",
+      "Voltage_+Infinity": "PASS",
+      "Voltage_-Infinity": "PASS",
+      "Current_NaN": "PASS",
+      "Current_+Infinity": "PASS",
+      "Current_-Infinity": "PASS",
+      "Temperature_NaN": "PASS",
+      "Temperature_+Infinity": "PASS",
+      "Temperature_-Infinity": "PASS"
+    }
+  },
+  "phase11_expanded_benchmark": {
+    "tuning": {
+      "total_scenarios": 25,
+      "binary_adaptive": {
+        "accuracy_pct": 72.0,
+        "precision_pct": 88.24,
+        "sensitivity_recall_pct": 75.0,
+        "specificity_pct": 60.0,
+        "false_positive_rate_pct": 40.0,
+        "false_negative_rate_pct": 25.0,
+        "tp": 15,
+        "tn": 3,
+        "fp": 2,
+        "fn": 5,
+        "total": 25,
+        "zero_division_notes": []
+      },
+      "binary_fixed": {
+        "accuracy_pct": 48.0,
+        "precision_pct": 76.92,
+        "sensitivity_recall_pct": 50.0,
+        "specificity_pct": 40.0,
+        "false_positive_rate_pct": 60.0,
+        "false_negative_rate_pct": 50.0,
+        "tp": 10,
+        "tn": 2,
+        "fp": 3,
+        "fn": 10,
+        "total": 25,
+        "zero_division_notes": []
+      },
+      "confusion_matrix": {
+        "classes": [
+          "NOMINAL",
+          "INCREASED_RESISTANCE",
+          "VOLTAGE_SENSOR_BIAS",
+          "TEMPERATURE_RISE",
+          "CAPACITY_FADE"
+        ],
+        "matrix": {
+          "NOMINAL": {
+            "NOMINAL": 3,
+            "INCREASED_RESISTANCE": 0,
+            "VOLTAGE_SENSOR_BIAS": 0,
+            "TEMPERATURE_RISE": 2,
+            "CAPACITY_FADE": 0
+          },
+          "INCREASED_RESISTANCE": {
+            "NOMINAL": 0,
+            "INCREASED_RESISTANCE": 5,
+            "VOLTAGE_SENSOR_BIAS": 0,
+            "TEMPERATURE_RISE": 0,
+            "CAPACITY_FADE": 0
+          },
+          "VOLTAGE_SENSOR_BIAS": {
+            "NOMINAL": 0,
+            "INCREASED_RESISTANCE": 0,
+            "VOLTAGE_SENSOR_BIAS": 5,
+            "TEMPERATURE_RISE": 0,
+            "CAPACITY_FADE": 0
+          },
+          "TEMPERATURE_RISE": {
+            "NOMINAL": 5,
+            "INCREASED_RESISTANCE": 0,
+            "VOLTAGE_SENSOR_BIAS": 0,
+            "TEMPERATURE_RISE": 0,
+            "CAPACITY_FADE": 0
+          },
+          "CAPACITY_FADE": {
+            "NOMINAL": 0,
+            "INCREASED_RESISTANCE": 0,
+            "VOLTAGE_SENSOR_BIAS": 0,
+            "TEMPERATURE_RISE": 0,
+            "CAPACITY_FADE": 5
+          }
+        },
+        "total_samples": 25,
+        "overall_accuracy_pct": 72.0,
+        "fault_attribution_recall_pct": 75.0,
+        "macro_metrics": {
+          "macro_precision_pct": 67.5,
+          "macro_recall_pct": 72.0,
+          "macro_specificity_pct": 93.0
+        },
+        "per_class": {
+          "NOMINAL": {
+            "accuracy_pct": 72.0,
+            "precision_pct": 37.5,
+            "sensitivity_recall_pct": 60.0,
+            "specificity_pct": 75.0,
+            "false_positive_rate_pct": 25.0,
+            "false_negative_rate_pct": 40.0,
+            "tp": 3,
+            "tn": 15,
+            "fp": 5,
+            "fn": 2,
+            "total": 25,
+            "zero_division_notes": []
+          },
+          "INCREASED_RESISTANCE": {
+            "accuracy_pct": 100.0,
+            "precision_pct": 100.0,
+            "sensitivity_recall_pct": 100.0,
+            "specificity_pct": 100.0,
+            "false_positive_rate_pct": 0.0,
+            "false_negative_rate_pct": 0.0,
+            "tp": 5,
+            "tn": 20,
+            "fp": 0,
+            "fn": 0,
+            "total": 25,
+            "zero_division_notes": []
+          },
+          "VOLTAGE_SENSOR_BIAS": {
+            "accuracy_pct": 100.0,
+            "precision_pct": 100.0,
+            "sensitivity_recall_pct": 100.0,
+            "specificity_pct": 100.0,
+            "false_positive_rate_pct": 0.0,
+            "false_negative_rate_pct": 0.0,
+            "tp": 5,
+            "tn": 20,
+            "fp": 0,
+            "fn": 0,
+            "total": 25,
+            "zero_division_notes": []
+          },
+          "TEMPERATURE_RISE": {
+            "accuracy_pct": 72.0,
+            "precision_pct": 0.0,
+            "sensitivity_recall_pct": 0.0,
+            "specificity_pct": 90.0,
+            "false_positive_rate_pct": 10.0,
+            "false_negative_rate_pct": 100.0,
+            "tp": 0,
+            "tn": 18,
+            "fp": 2,
+            "fn": 5,
+            "total": 25,
+            "zero_division_notes": []
+          },
+          "CAPACITY_FADE": {
+            "accuracy_pct": 100.0,
+            "precision_pct": 100.0,
+            "sensitivity_recall_pct": 100.0,
+            "specificity_pct": 100.0,
+            "false_positive_rate_pct": 0.0,
+            "false_negative_rate_pct": 0.0,
+            "tp": 5,
+            "tn": 20,
+            "fp": 0,
+            "fn": 0,
+            "total": 25,
+            "zero_division_notes": []
+          }
+        }
+      }
+    },
+    "held_out_evaluation": {
+      "total_scenarios": 100,
+      "nominal_count": 32,
+      "fault_count": 68,
+      "binary_adaptive": {
+        "accuracy_pct": 89.0,
+        "precision_pct": 98.31,
+        "sensitivity_recall_pct": 85.29,
+        "specificity_pct": 96.88,
+        "false_positive_rate_pct": 3.12,
+        "false_negative_rate_pct": 14.71,
+        "tp": 58,
+        "tn": 31,
+        "fp": 1,
+        "fn": 10,
+        "total": 100,
+        "zero_division_notes": []
+      },
+      "binary_fixed": {
+        "accuracy_pct": 39.0,
+        "precision_pct": 62.96,
+        "sensitivity_recall_pct": 25.0,
+        "specificity_pct": 68.75,
+        "false_positive_rate_pct": 31.25,
+        "false_negative_rate_pct": 75.0,
+        "tp": 17,
+        "tn": 22,
+        "fp": 10,
+        "fn": 51,
+        "total": 100,
+        "zero_division_notes": []
+      },
+      "confusion_matrix": {
+        "classes": [
+          "NOMINAL",
+          "INCREASED_RESISTANCE",
+          "VOLTAGE_SENSOR_BIAS",
+          "TEMPERATURE_RISE",
+          "CAPACITY_FADE"
+        ],
+        "matrix": {
+          "NOMINAL": {
+            "NOMINAL": 31,
+            "INCREASED_RESISTANCE": 0,
+            "VOLTAGE_SENSOR_BIAS": 0,
+            "TEMPERATURE_RISE": 1,
+            "CAPACITY_FADE": 0
+          },
+          "INCREASED_RESISTANCE": {
+            "NOMINAL": 0,
+            "INCREASED_RESISTANCE": 20,
+            "VOLTAGE_SENSOR_BIAS": 0,
+            "TEMPERATURE_RISE": 0,
+            "CAPACITY_FADE": 0
+          },
+          "VOLTAGE_SENSOR_BIAS": {
+            "NOMINAL": 0,
+            "INCREASED_RESISTANCE": 0,
+            "VOLTAGE_SENSOR_BIAS": 20,
+            "TEMPERATURE_RISE": 0,
+            "CAPACITY_FADE": 0
+          },
+          "TEMPERATURE_RISE": {
+            "NOMINAL": 10,
+            "INCREASED_RESISTANCE": 0,
+            "VOLTAGE_SENSOR_BIAS": 0,
+            "TEMPERATURE_RISE": 6,
+            "CAPACITY_FADE": 0
+          },
+          "CAPACITY_FADE": {
+            "NOMINAL": 0,
+            "INCREASED_RESISTANCE": 0,
+            "VOLTAGE_SENSOR_BIAS": 0,
+            "TEMPERATURE_RISE": 0,
+            "CAPACITY_FADE": 12
+          }
+        },
+        "total_samples": 100,
+        "overall_accuracy_pct": 89.0,
+        "fault_attribution_recall_pct": 85.29,
+        "macro_metrics": {
+          "macro_precision_pct": 92.26,
+          "macro_recall_pct": 86.88,
+          "macro_specificity_pct": 96.82
+        },
+        "per_class": {
+          "NOMINAL": {
+            "accuracy_pct": 89.0,
+            "precision_pct": 75.61,
+            "sensitivity_recall_pct": 96.88,
+            "specificity_pct": 85.29,
+            "false_positive_rate_pct": 14.71,
+            "false_negative_rate_pct": 3.12,
+            "tp": 31,
+            "tn": 58,
+            "fp": 10,
+            "fn": 1,
+            "total": 100,
+            "zero_division_notes": []
+          },
+          "INCREASED_RESISTANCE": {
+            "accuracy_pct": 100.0,
+            "precision_pct": 100.0,
+            "sensitivity_recall_pct": 100.0,
+            "specificity_pct": 100.0,
+            "false_positive_rate_pct": 0.0,
+            "false_negative_rate_pct": 0.0,
+            "tp": 20,
+            "tn": 80,
+            "fp": 0,
+            "fn": 0,
+            "total": 100,
+            "zero_division_notes": []
+          },
+          "VOLTAGE_SENSOR_BIAS": {
+            "accuracy_pct": 100.0,
+            "precision_pct": 100.0,
+            "sensitivity_recall_pct": 100.0,
+            "specificity_pct": 100.0,
+            "false_positive_rate_pct": 0.0,
+            "false_negative_rate_pct": 0.0,
+            "tp": 20,
+            "tn": 80,
+            "fp": 0,
+            "fn": 0,
+            "total": 100,
+            "zero_division_notes": []
+          },
+          "TEMPERATURE_RISE": {
+            "accuracy_pct": 89.0,
+            "precision_pct": 85.71,
+            "sensitivity_recall_pct": 37.5,
+            "specificity_pct": 98.81,
+            "false_positive_rate_pct": 1.19,
+            "false_negative_rate_pct": 62.5,
+            "tp": 6,
+            "tn": 83,
+            "fp": 1,
+            "fn": 10,
+            "total": 100,
+            "zero_division_notes": []
+          },
+          "CAPACITY_FADE": {
+            "accuracy_pct": 100.0,
+            "precision_pct": 100.0,
+            "sensitivity_recall_pct": 100.0,
+            "specificity_pct": 100.0,
+            "false_positive_rate_pct": 0.0,
+            "false_negative_rate_pct": 0.0,
+            "tp": 12,
+            "tn": 88,
+            "fp": 0,
+            "fn": 0,
+            "total": 100,
+            "zero_division_notes": []
+          }
+        }
+      },
+      "confidence_intervals_95": {
+        "adaptive_accuracy": [
+          0.8136870349691969,
+          0.9374580364293543
+        ],
+        "adaptive_specificity": [
+          0.8425573617998744,
+          0.9944621398359969
+        ],
+        "adaptive_sensitivity": [
+          0.7500260574669123,
+          0.9181118226365673
+        ],
+        "adaptive_attribution_recall": [
+          0.7500260574669123,
+          0.9181118226365673
+        ],
+        "fixed_accuracy": [
+          0.3001687400639441,
+          0.4879698295415926
+        ],
+        "fixed_specificity": [
+          0.5143332169904459,
+          0.8204745836639026
+        ],
+        "fixed_sensitivity": [
+          0.16235013970552148,
+          0.3643855285545139
+        ]
+      },
+      "category_breakdown": {
+        "NOMINAL": {
+          "total": 32,
+          "correct": 31,
+          "accuracy_pct": 96.9
+        },
+        "VOLTAGE_SENSOR_BIAS": {
+          "total": 20,
+          "correct": 20,
+          "accuracy_pct": 100.0
+        },
+        "INCREASED_RESISTANCE": {
+          "total": 20,
+          "correct": 20,
+          "accuracy_pct": 100.0
+        },
+        "TEMPERATURE_RISE": {
+          "total": 16,
+          "correct": 6,
+          "accuracy_pct": 37.5
+        },
+        "CAPACITY_FADE": {
+          "total": 12,
+          "correct": 12,
+          "accuracy_pct": 100.0
+        }
+      },
+      "condition_breakdown": {
+        "Subzero (<=0C)": {
+          "total": 20,
+          "correct": 18,
+          "accuracy_pct": 90.0
+        },
+        "Mild (1-30C)": {
+          "total": 66,
+          "correct": 59,
+          "accuracy_pct": 89.4
+        },
+        "Hot (>30C)": {
+          "total": 14,
+          "correct": 12,
+          "accuracy_pct": 85.7
+        }
+      }
+    }
+  }
+}

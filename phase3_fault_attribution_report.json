@@ -1,0 +1,141 @@
+{
+  "evaluation_timestamp": 1793006814.7848535,
+  "total_scenarios": 6,
+  "correct_attributions": 6,
+  "accuracy_pct": 100.0,
+  "confusion_matrix": {
+    "NOMINAL": {
+      "NOMINAL": 1,
+      "INCREASED_RESISTANCE": 0,
+      "TEMPERATURE_RISE": 0,
+      "CAPACITY_FADE": 0,
+      "VOLTAGE_SENSOR_BIAS": 0
+    },
+    "INCREASED_RESISTANCE": {
+      "NOMINAL": 0,
+      "INCREASED_RESISTANCE": 1,
+      "TEMPERATURE_RISE": 0,
+      "CAPACITY_FADE": 0,
+      "VOLTAGE_SENSOR_BIAS": 0
+    },
+    "TEMPERATURE_RISE": {
+      "NOMINAL": 0,
+      "INCREASED_RESISTANCE": 0,
+      "TEMPERATURE_RISE": 1,
+      "CAPACITY_FADE": 0,
+      "VOLTAGE_SENSOR_BIAS": 0
+    },
+    "CAPACITY_FADE": {
+      "NOMINAL": 0,
+      "INCREASED_RESISTANCE": 0,
+      "TEMPERATURE_RISE": 0,
+      "CAPACITY_FADE": 1,
+      "VOLTAGE_SENSOR_BIAS": 0
+    },
+    "VOLTAGE_SENSOR_BIAS": {
+      "NOMINAL": 0,
+      "INCREASED_RESISTANCE": 0,
+      "TEMPERATURE_RISE": 0,
+      "CAPACITY_FADE": 0,
+      "VOLTAGE_SENSOR_BIAS": 2
+    }
+  },
+  "scenarios": [
+    {
+      "description": "Nominal healthy baseline with standard sensor noise (0 mV bias, 0 mOhm)",
+      "actual_fault": "NOMINAL",
+      "diagnosed_fault": "NOMINAL",
+      "match": true,
+      "confidence": 1.0,
+      "severity_estimate": "Nominal (Within normal manufacturing & calibration tolerances)",
+      "hypotheses_scores": {
+        "NOMINAL": 1.0,
+        "INCREASED_RESISTANCE": 0.0,
+        "TEMPERATURE_RISE": 0.0,
+        "CAPACITY_FADE": 0.0,
+        "VOLTAGE_SENSOR_BIAS": 0.0
+      },
+      "explanation": "All diagnostic residuals (voltage slope: 0.60 mOhm, rest offset: -11.94 mV, thermal excess: -2.34 deg C) are well within healthy calibration bounds."
+    },
+    {
+      "description": "Increased internal resistance (+22 mOhm contact/electrolyte degradation)",
+      "actual_fault": "INCREASED_RESISTANCE",
+      "diagnosed_fault": "INCREASED_RESISTANCE",
+      "match": true,
+      "confidence": 0.9687,
+      "severity_estimate": "+22.3 mOhm internal resistance increase (+80.1% vs baseline)",
+      "hypotheses_scores": {
+        "NOMINAL": 0.0313,
+        "INCREASED_RESISTANCE": 0.9687,
+        "TEMPERATURE_RISE": 0.0,
+        "CAPACITY_FADE": 0.0,
+        "VOLTAGE_SENSOR_BIAS": 0.0
+      },
+      "explanation": "Voltage sag is strongly coupled to load current (slope dV/dI = -22.32 mOhm), while zero-current resting residual is negligible (-11.88 mV). This matches an Ohmic / contact degradation mechanism without sensor bias."
+    },
+    {
+      "description": "Abnormal thermal rise (80% cooling loss + 2.0W micro-short heat flux)",
+      "actual_fault": "TEMPERATURE_RISE",
+      "diagnosed_fault": "TEMPERATURE_RISE",
+      "match": true,
+      "confidence": 0.9934,
+      "severity_estimate": "+12.1 deg C average thermal excess above convective equilibrium (peak +29.4 deg C)",
+      "hypotheses_scores": {
+        "NOMINAL": 0.0066,
+        "INCREASED_RESISTANCE": 0.0,
+        "TEMPERATURE_RISE": 0.9934,
+        "CAPACITY_FADE": 0.0,
+        "VOLTAGE_SENSOR_BIAS": 0.0
+      },
+      "explanation": "Cell temperature exceeded expected thermal equilibrium by an average of +12.06 deg C (peak rise rate: 2.99 deg C/min). This indicates a thermal management failure (e.g. cooling loss or unexpected heat generation)."
+    },
+    {
+      "description": "Capacity fade (22% active lithium loss, retention = 0.78)",
+      "actual_fault": "CAPACITY_FADE",
+      "diagnosed_fault": "CAPACITY_FADE",
+      "match": true,
+      "confidence": 0.9913,
+      "severity_estimate": "22.7 % usable capacity loss relative to baseline",
+      "hypotheses_scores": {
+        "NOMINAL": 0.0087,
+        "INCREASED_RESISTANCE": 0.0,
+        "TEMPERATURE_RISE": 0.0,
+        "CAPACITY_FADE": 0.9913,
+        "VOLTAGE_SENSOR_BIAS": 0.0
+      },
+      "explanation": "The cell delivered 22.7% less Ah throughput before voltage cutoff than the baseline reference model expected, while internal resistance remained near baseline. This points to active lithium inventory loss (capacity fade)."
+    },
+    {
+      "description": "Positive voltage sensor bias (+45 mV ADC calibration offset)",
+      "actual_fault": "VOLTAGE_SENSOR_BIAS",
+      "diagnosed_fault": "VOLTAGE_SENSOR_BIAS",
+      "match": true,
+      "confidence": 0.9896,
+      "severity_estimate": "+33.2 mV constant voltage sensor calibration offset",
+      "hypotheses_scores": {
+        "NOMINAL": 0.0104,
+        "INCREASED_RESISTANCE": 0.0,
+        "TEMPERATURE_RISE": 0.0,
+        "CAPACITY_FADE": 0.0,
+        "VOLTAGE_SENSOR_BIAS": 0.9896
+      },
+      "explanation": "A persistent static voltage residual of +33.25 mV is observed even at zero current (rest), and is relatively independent of load current fluctuations (r=+0.194). This distinguishes an ADC / analog front-end calibration bias from physical electrochemical aging."
+    },
+    {
+      "description": "Negative voltage sensor bias (-35 mV ADC reference drop)",
+      "actual_fault": "VOLTAGE_SENSOR_BIAS",
+      "diagnosed_fault": "VOLTAGE_SENSOR_BIAS",
+      "match": true,
+      "confidence": 0.9926,
+      "severity_estimate": "-46.5 mV constant voltage sensor calibration offset",
+      "hypotheses_scores": {
+        "NOMINAL": 0.0074,
+        "INCREASED_RESISTANCE": 0.0,
+        "TEMPERATURE_RISE": 0.0,
+        "CAPACITY_FADE": 0.0,
+        "VOLTAGE_SENSOR_BIAS": 0.9926
+      },
+      "explanation": "A persistent static voltage residual of -46.50 mV is observed even at zero current (rest), and is relatively independent of load current fluctuations (r=+0.178). This distinguishes an ADC / analog front-end calibration bias from physical electrochemical aging."
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "cell_id": "CELL-NMC-001",
+  "chemistry": "NMC",
+  "nominal_capacity_ah": 3.0,
+  "calibration_timestamp": 1793006444.2087967,
+  "calibration_temp_c": 25.0,
+  "calibration_cycles": 0,
+  "capacity": {
+    "temp_c_list": [
+      -10.0,
+      25.0,
+      45.0
+    ],
+    "capacity_ah_list": [
+      2.625,
+      3.0417,
+      3.1333
+    ],
+    "reference_ah": 3.0417,
+    "derating_coeff_per_c": 0.01191
+  },
+  "impedance": {
+    "soc_pct_list": [
+      20.0,
+      35.0,
+      50.0,
+      65.0,
+      80.0,
+      90.0
+    ],
+    "dcir_mohm_list": [
+      31.98,
+      29.29,
+      27.85,
+      27.65,
+      28.74,
+      30.26
+    ],
+    "dcir_reference_mohm": 27.85,
+    "dcir_soc_gradient": -0.0232,
+    "tau1_s": 16.8,
+    "tau2_s": 81.0,
+    "dcir_arrhenius_ea": 22000.0
+  },
+  "ocv": {
+    "soc_pct_list": [
+      90.5,
+      80.5,
+      70.5,
+      60.5,
+      50.5,
+      40.5,
+      30.5,
+      20.5,
+      10.5
+    ],
+    "ocv_measured_v": [
+      4.1247,
+      4.0245,
+      3.9272,
+      3.8458,
+      3.7824,
+      3.7413,
+      3.7012,
+      3.653,
+      3.5669
+    ],
+    "ocv_model_v": [
+      4.1247,
+      4.0245,
+      3.9272,
+      3.8458,
+      3.7824,
+      3.7413,
+      3.7012,
+      3.653,
+      3.5669
+    ],
+    "max_deviation_mv": 0.0,
+    "rms_deviation_mv": 0.0
+  },
+  "thermal": {
+    "thermal_time_constant_s": 312.3,
+    "self_heating_coeff_wh_per_a2": 0.02759
+  },
+  "state_of_health_pct": 101.39,
+  "capacity_fade_pct": -1.39
+}

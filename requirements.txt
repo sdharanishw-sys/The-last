@@ -1,0 +1,5 @@
+# Core simulation engine has zero mandatory external dependencies.
+# The following optional packages enable DataFrame export and Matplotlib rendering:
+numpy>=1.20.0
+matplotlib>=3.5.0
+pandas>=1.4.0

@@ -1,0 +1,128 @@
+{
+  "metadata": {
+    "timestamp": 1793167175.8498118,
+    "cell_id": "NMC-PHASE4-REF",
+    "chemistry": "NMC Lithium-Ion",
+    "benchmark_scenarios_count": 7
+  },
+  "benchmark_summary": {
+    "fixed_accuracy_pct": 28.6,
+    "fixed_false_positive_rate_pct": 50.0,
+    "fixed_false_negative_rate_pct": 80.0,
+    "fixed_mean_detection_time_s": 2.0,
+    "fixed_attribution_capability_pct": 0.0,
+    "adaptive_accuracy_pct": 100.0,
+    "adaptive_false_positive_rate_pct": 0.0,
+    "adaptive_false_negative_rate_pct": 0.0,
+    "adaptive_mean_detection_time_s": 27.2,
+    "adaptive_attribution_capability_pct": 100.0
+  },
+  "operational_run": {
+    "injected_fault": "Early contact corrosion (+14 mOhm added impedance)",
+    "fixed_monitor_tripped": false,
+    "adaptive_monitor_tripped": true,
+    "adaptive_attributed_cause": "INCREASED_RESISTANCE",
+    "adaptive_confidence_pct": 98.7,
+    "adaptive_severity": "+13.8 mOhm internal resistance increase (+49.5% vs baseline)"
+  },
+  "scenarios": [
+    {
+      "name": "Nominal (Room Temp 25C)",
+      "description": "Healthy cell under dynamic drive cycle with normal sensor noise",
+      "is_fault": false,
+      "ground_truth": "NOMINAL",
+      "fixed_detected": false,
+      "fixed_ttd_s": null,
+      "fixed_false_alarm": false,
+      "adaptive_detected": false,
+      "adaptive_ttd_s": 64.0,
+      "adaptive_cause": "NOMINAL",
+      "adaptive_confidence_pct": 100.0,
+      "adaptive_severity": "Nominal (Within normal manufacturing & calibration tolerances)"
+    },
+    {
+      "name": "Nominal Harsh Cold (-10C)",
+      "description": "Healthy cell operating at sub-zero -10C (Ohmic DCIR naturally rises 2.5x due to Arrhenius kinetics)",
+      "is_fault": false,
+      "ground_truth": "NOMINAL",
+      "fixed_detected": true,
+      "fixed_ttd_s": 2.0,
+      "fixed_false_alarm": true,
+      "adaptive_detected": false,
+      "adaptive_ttd_s": 12.0,
+      "adaptive_cause": "NOMINAL",
+      "adaptive_confidence_pct": 100.0,
+      "adaptive_severity": "Nominal (Within normal manufacturing & calibration tolerances)"
+    },
+    {
+      "name": "Mild Resistance Degradation (+12 mOhm)",
+      "description": "Early contact corrosion / SEI thickening (+12 mOhm added)",
+      "is_fault": true,
+      "ground_truth": "INCREASED_RESISTANCE",
+      "fixed_detected": false,
+      "fixed_ttd_s": null,
+      "fixed_false_alarm": false,
+      "adaptive_detected": true,
+      "adaptive_ttd_s": 2.0,
+      "adaptive_cause": "INCREASED_RESISTANCE",
+      "adaptive_confidence_pct": 98.5,
+      "adaptive_severity": "+11.5 mOhm internal resistance increase (+41.2% vs baseline)"
+    },
+    {
+      "name": "Severe Resistance Degradation (+25 mOhm)",
+      "description": "Significant Ohmic degradation (+25 mOhm added, ~95% increase)",
+      "is_fault": true,
+      "ground_truth": "INCREASED_RESISTANCE",
+      "fixed_detected": true,
+      "fixed_ttd_s": 2.0,
+      "fixed_false_alarm": false,
+      "adaptive_detected": true,
+      "adaptive_ttd_s": 2.0,
+      "adaptive_cause": "INCREASED_RESISTANCE",
+      "adaptive_confidence_pct": 99.3,
+      "adaptive_severity": "+25.1 mOhm internal resistance increase (+90.3% vs baseline)"
+    },
+    {
+      "name": "Voltage Sensor Calibration Bias (+35 mV)",
+      "description": "ADC calibration drift adding constant +35 mV offset to voltage readings",
+      "is_fault": true,
+      "ground_truth": "VOLTAGE_SENSOR_BIAS",
+      "fixed_detected": false,
+      "fixed_ttd_s": null,
+      "fixed_false_alarm": false,
+      "adaptive_detected": true,
+      "adaptive_ttd_s": 2.0,
+      "adaptive_cause": "VOLTAGE_SENSOR_BIAS",
+      "adaptive_confidence_pct": 98.9,
+      "adaptive_severity": "+32.6 mV constant voltage sensor calibration offset"
+    },
+    {
+      "name": "Abnormal Thermal Rise (Cooling Failure)",
+      "description": "80% convective cooling loss + 2.0W micro-short heat flux",
+      "is_fault": true,
+      "ground_truth": "TEMPERATURE_RISE",
+      "fixed_detected": false,
+      "fixed_ttd_s": null,
+      "fixed_false_alarm": false,
+      "adaptive_detected": true,
+      "adaptive_ttd_s": 66.0,
+      "adaptive_cause": "TEMPERATURE_RISE",
+      "adaptive_confidence_pct": 98.7,
+      "adaptive_severity": "+5.9 deg C average thermal excess above convective equilibrium (peak +17.2 deg C)"
+    },
+    {
+      "name": "Capacity Fade (20% Lithium Loss)",
+      "description": "Loss of active lithium inventory (usable capacity retention = 0.80)",
+      "is_fault": true,
+      "ground_truth": "CAPACITY_FADE",
+      "fixed_detected": false,
+      "fixed_ttd_s": null,
+      "fixed_false_alarm": false,
+      "adaptive_detected": true,
+      "adaptive_ttd_s": 64.0,
+      "adaptive_cause": "CAPACITY_FADE",
+      "adaptive_confidence_pct": 99.0,
+      "adaptive_severity": "19.9 % usable capacity loss relative to baseline"
+    }
+  ]
+}
