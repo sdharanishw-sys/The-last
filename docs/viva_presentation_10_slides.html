@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adaptive EV Battery Management System — Viva Defense Presentation</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    header {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+    .header-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+    }
+    .slide-counter {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--card-bg);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+    }
+    main {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 1100px;
+      height: 85vh;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 40px;
+      animation: fadeIn 0.3s ease-out;
+    }
+    .slide.active {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .slide-badge {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 4px 10px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 1.25rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin: 16px 0 8px 0;
+      border-left: 3px solid var(--accent);
+      padding-left: 8px;
+    }
+    p, li {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+    ul {
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+    li { margin-bottom: 8px; }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 16px 0;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.9rem;
+    }
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .math {
+      font-family: "Courier New", Courier, monospace;
+      background: #090d16;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+      margin: 8px 0;
+      color: #38bdf8;
+      font-size: 0.95rem;
+      overflow-x: auto;
+    }
+    .speaker-notes-box {
+      margin-top: auto;
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px dashed #475569;
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .speaker-notes-header {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #f59e0b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .speaker-notes-content {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    footer {
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover:not(:disabled) {
+      background: var(--accent);
+      color: #0f172a;
+      border-color: var(--accent);
+    }
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .tag-success { color: var(--success); font-weight: 700; }
+    .tag-danger { color: var(--danger); font-weight: 700; }
+    .tag-warning { color: var(--warning); font-weight: 700; }
+  
+    /* 7-Stage Adaptive Battery Intelligence Pipeline */
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 14px;
+      margin: 12px 0 20px 0;
+      width: 100%;
+    }
+
+    .stage {
+      --accent: #23a9ff;
+      position: relative;
+      min-width: 0;
+      padding: 18px 10px 16px;
+      border: 2px solid var(--accent);
+      border-radius: 14px;
+      background: linear-gradient(
+        155deg, rgba(8,17,31,.94), rgba(3,6,13,.97)
+      );
+      box-shadow: 0 0 18px color-mix(
+        in srgb, var(--accent) 15%, transparent
+      );
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .stage:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+
+    .stage:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 3px;
+      background: var(--accent);
+      right: -15px;
+      top: 38%;
+    }
+
+    .stage:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      right: -15px;
+      top: calc(38% - 4px);
+      width: 8px;
+      height: 8px;
+      border-top: 3px solid var(--accent);
+      border-right: 3px solid var(--accent);
+      transform: rotate(45deg);
+      z-index: 2;
+    }
+
+    .stage .icon {
+      width: 46px;
+      height: 46px;
+      margin: 2px 0 12px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .stage h2 {
+      font-size: clamp(0.78rem, 0.95vw, 0.92rem);
+      line-height: 1.3;
+      margin: 0;
+      min-height: 2.8em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f8fafc;
+      font-weight: 600;
+    }
+
+    .stage .rule {
+      width: 86%;
+      height: 1px;
+      background: var(--accent);
+      margin: 10px 0;
+      opacity: 0.7;
+    }
+
+    .stage p {
+      margin: 0;
+      color: #c5d2e3;
+      font-size: clamp(0.7rem, 0.8vw, 0.78rem);
+      line-height: 1.45;
+    }
+
+    .blue   { --accent: #21a9ff; }
+    .teal   { --accent: #25d8bd; }
+    .violet { --accent: #a47aff; }
+    .amber  { --accent: #ffb33f; }
+    .cyan   { --accent: #22c7ff; }
+    .pink   { --accent: #ff4f9a; }
+    .red    { --accent: #ff4964; }
+
+    @media (max-width: 1150px) {
+      .pipeline {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .stage::before, .stage::after { display: none; }
+    }
+
+    @media (max-width: 650px) {
+      .pipeline {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-title">Adaptive EV Battery Management System — Final-Year Viva Defense</div>
+    <div class="slide-counter" id="slideIndicator">Slide 1 of 10</div>
+  </header>
+
+  <main>
+
+    <!-- Slide 1 -->
+    <div class="slide active" id="slide-1">
+      <div class="slide-badge">Undergraduate Engineering Dissertation Defense</div>
+      <h1>Adaptive EV Battery Management System</h1>
+      <h2>Personality-Based Diagnostics & Physics-Informed Digital Twin</h2>
+      
+      <div class="grid-2" style="margin-top: 20px;">
+        <div class="card">
+          <h3>Project Team Members</h3>
+          <ul style="margin-left: 18px; margin-bottom: 12px; font-size: 0.9rem;">
+            <li><strong>AL ZAFIRAH M</strong> &nbsp;— <code>730923105003</code></li>
+            <li><strong>BASKAR RAJA S</strong> &nbsp;— <code>730923105008</code></li>
+            <li><strong>DHARANISHWARAN S</strong> &nbsp;— <code>730923105014</code></li>
+            <li><strong>DINESH A</strong> &nbsp;— <code>730923105015</code></li>
+          </ul>
+          <p><strong>Degree:</strong> Bachelor of Engineering (B.E.)</p>
+          <p><strong>Discipline:</strong> Electrical & Electronics Engineering</p>
+          <p><strong>Institution:</strong> Excel Engineering College (Autonomous)</p>
+          <p><strong>Academic Batch:</strong> 2023–2027</p>
+        </div>
+        <div class="card">
+          <h3>Supervision & Project Scope</h3>
+          <p><strong>Project Supervisor:</strong> Prof. Rajaswari</p>
+          <p><strong>Focus Area:</strong> EV Powertrain Battery Safety & Telemetry Analytics</p>
+          <p><strong>Core Innovation:</strong> Real-time decoupling of aggressive driving transients from true electrochemical degradation.</p>
+          <p><strong>Key Result:</strong> <span class="tag-success">89.0% Accuracy</span> & <span class="tag-success">98.3% Precision</span> on 100-scenario held-out benchmark.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide" id="slide-2">
+      <div class="slide-badge">Problem Statement & Motivation</div>
+      <h1>The Industrial BMS Threshold Dilemma</h1>
+      <h2>Why Conventional Fixed-Threshold Safety Systems Fail</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>The Fixed Threshold Trade-Off</h3>
+          <ul>
+            <li><strong>Narrow Thresholds:</strong> Sport-mode driving (rapid 2.5C acceleration bursts) triggers false under-voltage alarms due to dynamic ohmic and polarization drop.</li>
+            <li><strong>Wide Thresholds:</strong> Incipient degradation (+12 mΩ contact corrosion) and sensor calibration drift (+35 mV) remain completely undetected within wide static limits.</li>
+            <li><strong>Cold Weather Traps:</strong> Sub-zero cold (-10°C) naturally increases cell internal resistance by ~2.5× via Arrhenius kinetics, tripping static alarms on healthy cells.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Quantitative Failure of Conventional BMS</h3>
+          <table>
+            <thead>
+              <tr><th>Condition</th><th>Fixed BMS Outcome</th><th>Adaptive Twin Outcome</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Aggressive Acceleration</td><td><span class="tag-danger">False Positive (31.25% FPR)</span></td><td><span class="tag-success">Nominal (0% False Alarms)</span></td></tr>
+              <tr><td>Sensor Bias (+35 mV)</td><td><span class="tag-danger">Silent Failure (Missed)</span></td><td><span class="tag-success">100% Attributed</span></td></tr>
+              <tr><td>Resistance Growth (+15 mΩ)</td><td><span class="tag-danger">Silent Failure (Missed)</span></td><td><span class="tag-success">100% Attributed</span></td></tr>
+              <tr><td>Sub-Zero (-10°C) Cold</td><td><span class="tag-danger">False Resistance Trip</span></td><td><span class="tag-success">Compensated by Arrhenius</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" id="slide-3">
+      <div class="slide-badge">Architecture & System Design</div>
+      <h1>Proposed Digital Twin Architecture</h1>
+      <h2>Three-Tier Diagnostic & Safety Supervisor Pipeline</h2>
+
+            <section class="pipeline" aria-label="Battery management processing pipeline">
+
+        <article class="stage blue">
+          <svg class="icon" viewBox="0 0 64 64" fill="none">
+            <path d="M4 34h8c5 0 5-17 10-17s5 30 10 30 5-36 10-36 5 27 10 27 5-10 8-10"
+            stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+          </svg>
+          <h2>Telemetry Stream:<br>V, I, T</h2>
+          <div class="rule"></div>
+          <p>Real-time battery data<br>(Voltage, Current,<br>Temperature)</p>
+        </article>
+
+        <article class="stage teal">
+          <svg class="icon" viewBox="0 0 64 64" fill="none">
+            <path d="M8 10h48L38 31v16l-12 7V31L8 10Z" stroke="currentColor" stroke-width="3.5"/>
+            <circle cx="48" cy="49" r="8" stroke="currentColor" stroke-width="3.5"/>
+          </svg>
+          <h2>Telemetry Sanitizer<br>(NaN/Inf Filter)</h2>
+          <div class="rule"></div>
+          <p>Removes invalid values<br>(NaN, Inf, outliers)<br>and ensures clean data.</p>
+        </article>
+
+        <article class="stage violet">
+          <svg class="icon" viewBox="0 0 64 64" fill="none">
+            <rect x="8" y="13" width="27" height="42" rx="5" stroke="currentColor" stroke-width="3.5"/>
+            <path d="M16 7h11v6H16zM24 22l-6 12h7l-3 9 10-15h-7l3-6Z" fill="currentColor"/>
+            <path d="M42 22h5l4-5 4 10 4-5h2M42 43h19 M42 49h19" stroke="currentColor" stroke-width="2.5"/>
+          </svg>
+          <h2>Personalized 2-RC Twin</h2>
+          <div class="rule"></div>
+          <p>Estimates SOC, SOH<br>and internal states using<br>a personalized 2-RC model.</p>
+        </article>
+
+        <article class="stage amber">
+          <svg class="icon" viewBox="0 0 64 64" fill="none">
+            <path d="M9 8v46h48" stroke="currentColor" stroke-width="3.5"/>
+            <path d="M13 36c7 0 5-15 11-15s4 18 10 18 5-25 11-25 5 18 12 18" stroke="currentColor" stroke-width="3.5"/>
+            <path d="M15 44h42" stroke="currentColor" stroke-width="2" stroke-dasharray="4 5"/>
+          </svg>
+          <h2>Residual Generator</h2>
+          <div class="rule"></div>
+          <p>Computes the difference<br>between measured and<br>model-predicted values.</p>
+        </article>
+
+        <article class="stage cyan">
+          <svg class="icon" viewBox="0 0 64 64" fill="none">
+            <path d="M10 54V9M10 54h46M5 16l5-7 5 7 M49 49l7 5-7 5" stroke="currentColor" stroke-width="3"/>
+            <rect x="25" y="19" width="27" height="24" rx="4" stroke="currentColor" stroke-width="3"/>
+            <rect x="19" y="25" width="27" height="24" rx="4" stroke="currentColor" stroke-width="3"/>
+          </svg>
+          <h2>Orthogonal Feature Extractor</h2>
+          <div class="rule"></div>
+          <p>Builds independent features<br>(e.g., via PCA/ICA) for<br>robust analysis.</p>
+        </article>
+
+        <article class="stage pink">
+          <svg class="icon" viewBox="0 0 64 64" fill="none">
+            <circle cx="13" cy="12" r="6" fill="currentColor"/>
+            <circle cx="32" cy="12" r="6" fill="currentColor"/>
+            <circle cx="51" cy="12" r="6" fill="currentColor"/>
+            <path d="M9 54V40h9v14M27 54V29h9v25 M45 54V20h9v34" fill="currentColor"/>
+          </svg>
+          <h2>Multi-Class Attribution</h2>
+          <div class="rule"></div>
+          <p>Identifies fault type<br>and contribution<br>(thermal, aging, etc.).</p>
+        </article>
+
+        <article class="stage red">
+          <svg class="icon" viewBox="0 0 64 64" fill="none">
+            <path d="M32 5 53 14v15c0 14-9 23-21 30 C20 52 11 43 11 29V14L32 5Z" stroke="currentColor" stroke-width="3.5"/>
+            <path d="m21 31 8 8 15-17" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+          </svg>
+          <h2>Autonomous Safety Supervisor</h2>
+          <div class="rule"></div>
+          <p>Triggers alerts,<br>protective actions<br>and system control.</p>
+        </article>
+
+      </section>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Execution Hierarchy</h3>
+          <ul>
+            <li><strong>High-Frequency Protection (10 Hz):</strong> Exact discrete-time 2-RC state updates, non-finite telemetry rejection, and instantaneous safety cutoffs.</li>
+            <li><strong>Intermediate Diagnostic Loop (0.1–1 Hz):</strong> Dynamic residual tracking, OLS impedance regression, and 20s resting dwell qualification.</li>
+            <li><strong>Quasi-Static Calibration Loop:</strong> 4-stage baseline fingerprinting during scheduled vehicle rests and charging.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Fail-Safe Supervisory Actions</h3>
+          <ul>
+            <li><strong>Thermal Trip:</strong> Instantaneous contactor disconnect if T ≥ 60.0°C.</li>
+            <li><strong>Low-Voltage Cutoff:</strong> Contactor disconnect if V ≤ 2.80 V.</li>
+            <li><strong>Sub-Zero Regen Lockout:</strong> Charge current clamped to 0 A if T ≤ 0.0°C.</li>
+            <li><strong>Telemetry Guard:</strong> NaN/Inf rejected, last valid state latched.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide" id="slide-4">
+      <div class="slide-badge">Mathematical Modeling</div>
+      <h1>Electro-Thermal Model Formulation</h1>
+      <h2>2-RC Thevenin Network, Monotone Spline & Thermal Balance</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>2-RC Thevenin Network</h3>
+          <div class="math">V_t(t) = V_ocv(SOC, T) - I(t)·R_0(T) - V_1(t) - V_2(t)</div>
+          <div class="math">V_i[k+1] = V_i[k]·e^(-Δt/τ_i) + I[k]·R_i·[1 - e^(-Δt/τ_i)]</div>
+          <ul>
+            <li><strong>Fast Overpotential (V_1):</strong> Charge-transfer kinetics (τ_1 ≈ 0.5–5 s).</li>
+            <li><strong>Slow Overpotential (V_2):</strong> Solid-state diffusion (τ_2 ≈ 20–60 s).</li>
+            <li><strong>Fritsch-Carlson Spline:</strong> Guarantees strictly monotonic dOCV/dSOC > 0.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Thermal Balance & Arrhenius Kinetics</h3>
+          <div class="math">R_i(T) = R_{i,ref} · exp[ (E_{a,R} / R_g) · (1/T_cell - 1/T_ref) ]</div>
+          <div class="math">C_th · (dT_cell / dt) = Q_gen - (T_cell - T_amb)/R_th + Q_ext</div>
+          <ul>
+            <li><strong>Joule Heating:</strong> Q_joule = I^2·R_0 + V_1^2/R_1 + V_2^2/R_2.</li>
+            <li><strong>Reversible Heat:</strong> Q_entropic = -I · T_cell · (dV_ocv / dT).</li>
+            <li><strong>Thermal Parameters:</strong> C_th = 65.0 J/K, R_th = 12.0 K/W.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide" id="slide-5">
+      <div class="slide-badge">Personalized Calibration</div>
+      <h1>Automated 4-Stage Baseline Protocol</h1>
+      <h2>Extracting an Individualized Electrochemical Fingerprint</h2>
+
+      <div class="card" style="margin-bottom: 16px;">
+        <table style="margin: 0;">
+          <thead>
+            <tr><th>Stage</th><th>Procedure</th><th>Extracted Physical Parameters</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Stage 1: Capacity</strong></td><td>Full 1.0C CC discharge from 4.20V to 2.80V</td><td>Usable capacity Q_eff, Capacity Health SOH_cap</td></tr>
+            <tr><td><strong>Stage 2: HPPC Pulse</strong></td><td>10s discharge (2.0C), 40s rest, 10s regen (1.5C)</td><td>Ohmic resistance R_0, Polarization R_1, C_1, R_2, C_2</td></tr>
+            <tr><td><strong>Stage 3: Quasi-Static OCV</strong></td><td>C/20 intermittent discharge with 1h relaxation</td><td>Thermodynamic equilibrium knot table V_ocv(SOC)</td></tr>
+            <tr><td><strong>Stage 4: Thermal Step</strong></td><td>Sustained 2.0C discharge to steady-state temp</td><td>Convective thermal dissipation resistance R_th</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Why Baseline Calibration is Critical</h3>
+          <p>Cell-to-cell manufacturing variations naturally cause ±3% capacity dispersion and ±5% internal resistance differences. Without baseline calibration, these benign differences would trigger permanent false alarms.</p>
+        </div>
+        <div class="card">
+          <h3>Immutable Reference Profile</h3>
+          <p>Once generated, the baseline parameters are frozen into an immutable profile representing healthy behavior for that specific pack, providing a clean ground-truth reference.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide" id="slide-6">
+      <div class="slide-badge">Diagnostic Innovation</div>
+      <h1>Orthogonal Feature Extraction</h1>
+      <h2>Decoupling Ohmic Resistance from Sensor Calibration Bias</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Feature 1: Dynamic Resistance Slope</h3>
+          <div class="math">β_R = (d V_res / d I) = [ Σ(I - I_avg)(e_V - e_V_avg) ] / Σ(I - I_avg)^2</div>
+          <ul>
+            <li>Calculated via online OLS regression during active currents (|I| ≥ 0.5A).</li>
+            <li>Pure resistance degradation scales strictly proportional to current (slope β_R < 0).</li>
+            <li>Independent of constant sensor offsets.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Feature 2: Compensated Resting Voltage</h3>
+          <div class="math">V_{rest, comp} = e_V - (V_1,pred + V_2,pred)</div>
+          <ul>
+            <li><strong>20-Second Rest Dwell:</strong> Only evaluated when |I| ≤ 0.05A continuously for ≥ 20.0s (200 timesteps).</li>
+            <li><strong>Polarization Compensation:</strong> Subtracts predicted residual RC voltages.</li>
+            <li>Eliminates false sensor bias alarms caused by decaying polarization after aggressive driving!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide" id="slide-7">
+      <div class="slide-badge">Verification Benchmark</div>
+      <h1>100-Scenario Held-Out Statistical Results</h1>
+      <h2>Direct Comparison: Adaptive Twin vs. Fixed-Threshold Baseline</h2>
+
+      <div class="card" style="margin-bottom: 16px;">
+        <table style="margin: 0;">
+          <thead>
+            <tr><th>Performance Metric</th><th>Adaptive Digital Twin</th><th>Fixed-Threshold Baseline</th><th>Improvement</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Overall Accuracy</strong></td><td><span class="tag-success">89.00%</span> [81.4%, 93.7%]</td><td>39.00% [30.0%, 48.8%]</td><td><span class="tag-success">+50.00%</span></td></tr>
+            <tr><td><strong>Precision (PPV)</strong></td><td><span class="tag-success">98.31%</span> [91.0%, 99.7%]</td><td>62.96% [44.2%, 78.5%]</td><td><span class="tag-success">+35.35%</span></td></tr>
+            <tr><td><strong>Sensitivity / Recall (TPR)</strong></td><td><span class="tag-success">85.29%</span> [75.0%, 91.8%]</td><td>25.00% [16.2%, 36.4%]</td><td><span class="tag-success">+60.29%</span></td></tr>
+            <tr><td><strong>Specificity (TNR)</strong></td><td><span class="tag-success">96.88%</span> [84.3%, 99.4%]</td><td>68.75% [51.4%, 82.0%]</td><td><span class="tag-success">+28.13%</span></td></tr>
+            <tr><td><strong>False Positive Rate (FPR)</strong></td><td><span class="tag-success">3.12%</span> (1 / 32)</td><td>31.25% (10 / 32)</td><td><span class="tag-success">-90.0% Relative</span></td></tr>
+            <tr><td><strong>False Negative Rate (FNR)</strong></td><td><span class="tag-success">14.71%</span> (10 / 68)</td><td>75.00% (51 / 68)</td><td><span class="tag-success">-80.4% Relative</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Statistical Rigor</h3>
+          <p>Evaluated on 100 held-out scenarios (seeds 2000–2099) across 3 driver profiles and 3 thermal regimes (Sub-zero, Mild, Hot). All intervals computed using 95% Wilson Score Confidence limits.</p>
+        </div>
+        <div class="card">
+          <h3>Key Takeaways</h3>
+          <p>The Adaptive Twin boosted accuracy from 39% to 89% and slashed false alarm rate from 31.25% to 3.12%, while capturing 58 of 68 fault events compared to only 17 for fixed thresholds.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide" id="slide-8">
+      <div class="slide-badge">Attribution Analysis</div>
+      <h1>Multi-Class Confusion Matrix</h1>
+      <h2>Detailed 5x5 Diagnostic Breakdown Across Fault Categories</h2>
+
+      <div class="card" style="margin-bottom: 16px;">
+        <table style="margin: 0; font-size: 0.85rem;">
+          <thead>
+            <tr><th>Ground Truth \ Predicted</th><th>NOMINAL</th><th>INC_RES</th><th>V_BIAS</th><th>TEMP_RISE</th><th>CAP_FADE</th><th>Total</th><th>Recall</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>NOMINAL (Healthy / Harsh)</strong></td><td class="tag-success">31</td><td>0</td><td>0</td><td>1</td><td>0</td><td>32</td><td><strong>96.88%</strong></td></tr>
+            <tr><td><strong>INCREASED_RESISTANCE</strong></td><td>0</td><td class="tag-success">20</td><td>0</td><td>0</td><td>0</td><td>20</td><td><strong>100.00%</strong></td></tr>
+            <tr><td><strong>VOLTAGE_SENSOR_BIAS</strong></td><td>0</td><td>0</td><td class="tag-success">20</td><td>0</td><td>0</td><td>20</td><td><strong>100.00%</strong></td></tr>
+            <tr><td><strong>TEMPERATURE_RISE</strong></td><td>10</td><td>0</td><td>0</td><td class="tag-warning">6</td><td>0</td><td>16</td><td><strong>37.50%</strong></td></tr>
+            <tr><td><strong>CAPACITY_FADE</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td class="tag-success">12</td><td>12</td><td><strong>100.00%</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Flawless Electrical Attribution</h3>
+          <ul>
+            <li><strong>Resistance Growth:</strong> 20/20 (100% recall, 100% precision).</li>
+            <li><strong>Voltage Sensor Bias:</strong> 20/20 (100% recall, 100% precision).</li>
+            <li><strong>Capacity Loss:</strong> 12/12 (100% recall, 100% precision).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Nominal Specificity & The 6/16 Result</h3>
+          <ul>
+            <li><strong>Nominal Specificity:</strong> 31/32 correct; only 1 harsh hill climb flagged as temperature rise.</li>
+            <li><strong>Thermal Limitation:</strong> 6/16 detected, 10 classified nominal. This physical limitation is explained on the next slide.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide" id="slide-9">
+      <div class="slide-badge">Physical Analysis</div>
+      <h1>The 6/16 Thermal Detection Limitation</h1>
+      <h2>Thermal Mass Inertia vs. Drive-Cycle Duration</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>The Physical Root Cause</h3>
+          <div class="math">τ_th = R_th · C_th = 12.0 K/W · 65.0 J/K = 780.0 s (13.0 min)</div>
+          <ul>
+            <li><strong>Thermal Time Constant:</strong> 13.0 minutes for cylindrical 18650 cell.</li>
+            <li><strong>Drive-Cycle Duration:</strong> Test cycles run for 360 s (6.0 min) — less than half of one thermal time constant (0.46 τ_th).</li>
+            <li><strong>Subtle vs. Severe Heat Flux:</strong>
+              <ul>
+                <li>Severe Heat Flux (≥ 2.5W): ΔT > 4.0°C within 180s ➔ <strong>Detected (98.9% Conf)</strong>.</li>
+                <li>Mild Cooling Loss (30% reduction): ΔT excess only reached +1.8°C to +3.4°C over 360s ➔ <strong>Sub-threshold (< +4.0°C)</strong>.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Engineering Significance & Safety</h3>
+          <ul>
+            <li><strong>Physical Observability:</strong> Mild cooling degradation cannot be observed over a 6-minute window without multi-cycle thermal energy integration.</li>
+            <li><strong>Safety Supervisor Protection:</strong> The primary safety cutoff at T ≥ 60.0°C remains fully active, guaranteeing hardware protection regardless of diagnostic attribution.</li>
+            <li><strong>No False Alarms:</strong> Lowering the threshold below +4.0°C would cause false alarms during hot ambient hill climbs.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide" id="slide-10">
+      <div class="slide-badge">Scope, Roadmap & Conclusion</div>
+      <h1>Digital Twin Scope & Hardware Roadmap</h1>
+      <h2>Simulation Boundaries & Pathway to Automotive Deployment</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Declaration of Simulation Boundaries</h3>
+          <p>All models, drive cycles, and benchmarks were executed within a <strong>physics-informed software digital twin in Python</strong>. No physical cell cycler testing, real-time HIL benches (e.g. dSPACE), or ISO 26262 certifications are claimed.</p>
+          <h3 style="margin-top: 14px;">Key Research Contributions</h3>
+          <ul>
+            <li>Coupled 2-RC Thevenin ECM with monotone spline and Arrhenius thermal balance.</li>
+            <li>Decoupled ohmic degradation from sensor bias via 20s resting dwell filter.</li>
+            <li>89% accuracy, 98.3% precision, 90% reduction in false alarms.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>4-Phase Hardware Deployment Roadmap</h3>
+          <ul>
+            <li><strong>Phase 1: Embedded C99:</strong> Port to static C99 for ARM Cortex-M4F/M7 (< 32 KB RAM, < 128 KB Flash).</li>
+            <li><strong>Phase 2: Automotive AFE Interfacing:</strong> Interface via isolated SPI with Analog Devices LTC6811 or TI BQ79616.</li>
+            <li><strong>Phase 3: Dual UKF Estimation:</strong> Implement Unscented Kalman Filtering for joint state/parameter tracking.</li>
+            <li><strong>Phase 4: Functional Safety:</strong> MISRA C:2012 auditing and ISO 26262 ASIL-C/D qualification on HIL testbench.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>← Previous Slide</button>
+    <div style="font-size: 0.85rem; color: #64748b;">Use Left/Right arrow keys to navigate</div>
+    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next Slide →</button>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 10;
+
+    function showSlide(index) {
+      if (index < 1 || index > totalSlides) return;
+      document.querySelectorAll('.slide').forEach((slide, i) => {
+        slide.classList.toggle('active', (i + 1) === index);
+      });
+      currentSlide = index;
+      document.getElementById('slideIndicator').textContent = `Slide ${currentSlide} of ${totalSlides}`;
+      document.getElementById('prevBtn').disabled = (currentSlide === 1);
+      document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) showSlide(currentSlide - 1);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'Home') {
+        showSlide(1);
+      } else if (e.key === 'End') {
+        showSlide(totalSlides);
+      }
+    });
+  </script>
+
+</body>
+</html>

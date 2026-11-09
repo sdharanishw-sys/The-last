@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" style="background:#0f172a; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;">
+<text x="450.0" y="36" text-anchor="middle" fill="#38bdf8" font-size="19" font-weight="bold">Battery Simulation: NMC (1s)</text>
+<rect x="75" y="65" width="790" height="150" fill="#1e293b" rx="6" stroke="#334155" stroke-width="1"/>
+<text x="87" y="85" fill="#e2e8f0" font-size="13" font-weight="600">Current (A)</text>
+<line x1="75" y1="215.0" x2="865" y2="215.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="219.0" text-anchor="end" fill="#94a3b8" font-size="11">-0.4</text>
+<line x1="75" y1="165.0" x2="865" y2="165.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="169.0" text-anchor="end" fill="#94a3b8" font-size="11">-0.3</text>
+<line x1="75" y1="115.0" x2="865" y2="115.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="119.0" text-anchor="end" fill="#94a3b8" font-size="11">-0.3</text>
+<line x1="75" y1="65.0" x2="865" y2="65.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="69.0" text-anchor="end" fill="#94a3b8" font-size="11">-0.2</text>
+<polyline points="75.0,79.5 865.0,200.5" fill="none" stroke="#38bdf8" stroke-width="1.8" />
+<line x1="825" y1="81" x2="845" y2="81" stroke="#38bdf8" stroke-width="2"/>
+<text x="850" y="85" fill="#cbd5e1" font-size="11">Current</text>
+<rect x="75" y="260" width="790" height="150" fill="#1e293b" rx="6" stroke="#334155" stroke-width="1"/>
+<text x="87" y="280" fill="#e2e8f0" font-size="13" font-weight="600">Voltage Dynamics (V)</text>
+<line x1="75" y1="410.0" x2="865" y2="410.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="414.0" text-anchor="end" fill="#94a3b8" font-size="11">4.2</text>
+<line x1="75" y1="360.0" x2="865" y2="360.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="364.0" text-anchor="end" fill="#94a3b8" font-size="11">4.2</text>
+<line x1="75" y1="310.0" x2="865" y2="310.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="314.0" text-anchor="end" fill="#94a3b8" font-size="11">4.2</text>
+<line x1="75" y1="260.0" x2="865" y2="260.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="264.0" text-anchor="end" fill="#94a3b8" font-size="11">4.2</text>
+<polyline points="75.0,317.9 865.0,274.5" fill="none" stroke="#f87171" stroke-width="1.8" />
+<polyline points="75.0,395.5 865.0,395.5" fill="none" stroke="#c084fc" stroke-width="1.8" stroke-dasharray="4,4"/>
+<line x1="825" y1="276" x2="845" y2="276" stroke="#c084fc" stroke-width="2"/>
+<text x="850" y="280" fill="#cbd5e1" font-size="11">OCV</text>
+<line x1="695" y1="276" x2="715" y2="276" stroke="#f87171" stroke-width="2"/>
+<text x="720" y="280" fill="#cbd5e1" font-size="11">Terminal Voltage</text>
+<rect x="75" y="455" width="790" height="150" fill="#1e293b" rx="6" stroke="#334155" stroke-width="1"/>
+<text x="87" y="475" fill="#e2e8f0" font-size="13" font-weight="600">State of Charge (%)</text>
+<line x1="75" y1="605.0" x2="865" y2="605.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="609.0" text-anchor="end" fill="#94a3b8" font-size="11">0.0</text>
+<line x1="75" y1="555.0" x2="865" y2="555.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="559.0" text-anchor="end" fill="#94a3b8" font-size="11">33.3</text>
+<line x1="75" y1="505.0" x2="865" y2="505.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="509.0" text-anchor="end" fill="#94a3b8" font-size="11">66.7</text>
+<line x1="75" y1="455.0" x2="865" y2="455.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="459.0" text-anchor="end" fill="#94a3b8" font-size="11">100.0</text>
+<polyline points="75.0,455.0 865.0,455.0" fill="none" stroke="#fb923c" stroke-width="1.8" />
+<line x1="825" y1="471" x2="845" y2="471" stroke="#fb923c" stroke-width="2"/>
+<text x="850" y="475" fill="#cbd5e1" font-size="11">SOC</text>
+<rect x="75" y="650" width="790" height="150" fill="#1e293b" rx="6" stroke="#334155" stroke-width="1"/>
+<text x="87" y="670" fill="#e2e8f0" font-size="13" font-weight="600">Thermal Evolution (°C)</text>
+<line x1="75" y1="800.0" x2="865" y2="800.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="804.0" text-anchor="end" fill="#94a3b8" font-size="11">24.5</text>
+<line x1="75" y1="750.0" x2="865" y2="750.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="754.0" text-anchor="end" fill="#94a3b8" font-size="11">24.8</text>
+<line x1="75" y1="700.0" x2="865" y2="700.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="704.0" text-anchor="end" fill="#94a3b8" font-size="11">25.2</text>
+<line x1="75" y1="650.0" x2="865" y2="650.0" stroke="#334155" stroke-width="0.8" stroke-dasharray="3,3"/>
+<text x="67" y="654.0" text-anchor="end" fill="#94a3b8" font-size="11">25.5</text>
+<polyline points="75.0,725.0 865.0,725.0" fill="none" stroke="#f43f5e" stroke-width="1.8" />
+<polyline points="75.0,725.0 865.0,725.0" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="4,4"/>
+<line x1="825" y1="666" x2="845" y2="666" stroke="#94a3b8" stroke-width="2"/>
+<text x="850" y="670" fill="#cbd5e1" font-size="11">Ambient Temp</text>
+<line x1="695" y1="666" x2="715" y2="666" stroke="#f43f5e" stroke-width="2"/>
+<text x="720" y="670" fill="#cbd5e1" font-size="11">Cell Temp</text>
+<text x="75.0" y="822" text-anchor="middle" fill="#94a3b8" font-size="11">0s</text>
+<text x="233.0" y="822" text-anchor="middle" fill="#94a3b8" font-size="11">0s</text>
+<text x="391.0" y="822" text-anchor="middle" fill="#94a3b8" font-size="11">0s</text>
+<text x="549.0" y="822" text-anchor="middle" fill="#94a3b8" font-size="11">1s</text>
+<text x="707.0" y="822" text-anchor="middle" fill="#94a3b8" font-size="11">1s</text>
+<text x="865.0" y="822" text-anchor="middle" fill="#94a3b8" font-size="11">1s</text>
+<text x="470.0" y="842" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="600">Time (seconds)</text>
+</svg>
