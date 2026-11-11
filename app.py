@@ -2,7 +2,7 @@
 #  TWIN REFERENCE ADAPTIVE BATTERY MANAGEMENT SYSTEM
 #  WITH DEVIATION ATTRIBUTION FOR PERSONALIZED EV BATTERY HEALTH
 #
-#  app.py  –  Streamlit Interactive Dashboard (Light Theme & Dynamic Physics)
+#  app.py  –  Streamlit Interactive Dashboard (Light Theme, Bold Title, High-Contrast Buttons)
 # ============================================================
 
 import streamlit as st
@@ -30,77 +30,169 @@ st.set_page_config(
 )
 
 # ------------------------------------------------------------------ #
-# LIGHT THEME CUSTOM CSS                                               #
+# BULLETPROOF LIGHT THEME CSS                                         #
 # ------------------------------------------------------------------ #
 
 st.markdown("""
 <style>
-/* ---- Global Light Theme ---- */
-html, body, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+/* ---- 1. Global Light Theme ---- */
+html, body, [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stToolbar"] {
     background-color: #f8fafc !important;
     color: #0f172a !important;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
+
+/* Base text elements */
+p, span, label, div {
+    color: #0f172a;
+}
+
+/* ---- 2. Main Title (Bold & Prominent) ---- */
+.main-title {
+    text-align: center !important;
+    font-size: 1.55rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.02em !important;
+    text-transform: uppercase !important;
+    color: #0f172a !important;
+    padding: 10px 0 4px 0 !important;
+    line-height: 1.35 !important;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.05) !important;
+}
+.subtitle {
+    text-align: center !important;
+    color: #475569 !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+    margin-bottom: 8px !important;
+}
+
+/* ---- 3. Action Buttons (Fixing Color Mistake: Distinct & High Contrast) ---- */
+/* General button styling */
+.stButton > button {
+    width: 100% !important;
+    padding: 14px 10px !important;
+    font-size: 0.90rem !important;
+    font-weight: 800 !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease-in-out !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06) !important;
+    text-align: center !important;
+    white-space: pre-line !important;
+}
+
+/* Stage 1 Button: Soft Green Background with Crisp Dark Green Text */
+[data-testid="stColumn"]:nth-of-type(1) .stButton > button,
+div[data-testid="column"]:nth-of-type(1) .stButton > button {
+    background-color: #f0fdf4 !important;
+    border: 2px solid #16a34a !important;
+    color: #15803d !important;
+}
+[data-testid="stColumn"]:nth-of-type(1) .stButton > button p,
+[data-testid="stColumn"]:nth-of-type(1) .stButton > button span,
+[data-testid="stColumn"]:nth-of-type(1) .stButton > button div,
+div[data-testid="column"]:nth-of-type(1) .stButton > button p,
+div[data-testid="column"]:nth-of-type(1) .stButton > button span,
+div[data-testid="column"]:nth-of-type(1) .stButton > button div {
+    color: #15803d !important;
+    font-weight: 900 !important;
+}
+[data-testid="stColumn"]:nth-of-type(1) .stButton > button:hover,
+div[data-testid="column"]:nth-of-type(1) .stButton > button:hover {
+    background-color: #dcfce7 !important;
+    border-color: #15803d !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.2) !important;
+}
+
+/* Stage 2 Button: Soft Red/Rose Background with Crisp Dark Red Text */
+[data-testid="stColumn"]:nth-of-type(2) .stButton > button,
+div[data-testid="column"]:nth-of-type(2) .stButton > button {
+    background-color: #fef2f2 !important;
+    border: 2px solid #dc2626 !important;
+    color: #b91c1c !important;
+}
+[data-testid="stColumn"]:nth-of-type(2) .stButton > button p,
+[data-testid="stColumn"]:nth-of-type(2) .stButton > button span,
+[data-testid="stColumn"]:nth-of-type(2) .stButton > button div,
+div[data-testid="column"]:nth-of-type(2) .stButton > button p,
+div[data-testid="column"]:nth-of-type(2) .stButton > button span,
+div[data-testid="column"]:nth-of-type(2) .stButton > button div {
+    color: #b91c1c !important;
+    font-weight: 900 !important;
+}
+[data-testid="stColumn"]:nth-of-type(2) .stButton > button:hover,
+div[data-testid="column"]:nth-of-type(2) .stButton > button:hover {
+    background-color: #fee2e2 !important;
+    border-color: #b91c1c !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.2) !important;
+}
+
+/* Stage 3 Button: Soft Blue Background with Crisp Dark Blue Text */
+[data-testid="stColumn"]:nth-of-type(3) .stButton > button,
+div[data-testid="column"]:nth-of-type(3) .stButton > button {
+    background-color: #eff6ff !important;
+    border: 2px solid #2563eb !important;
+    color: #1d4ed8 !important;
+}
+[data-testid="stColumn"]:nth-of-type(3) .stButton > button p,
+[data-testid="stColumn"]:nth-of-type(3) .stButton > button span,
+[data-testid="stColumn"]:nth-of-type(3) .stButton > button div,
+div[data-testid="column"]:nth-of-type(3) .stButton > button p,
+div[data-testid="column"]:nth-of-type(3) .stButton > button span,
+div[data-testid="column"]:nth-of-type(3) .stButton > button div {
+    color: #1d4ed8 !important;
+    font-weight: 900 !important;
+}
+[data-testid="stColumn"]:nth-of-type(3) .stButton > button:hover,
+div[data-testid="column"]:nth-of-type(3) .stButton > button:hover {
+    background-color: #dbeafe !important;
+    border-color: #1d4ed8 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2) !important;
+}
+
+/* ---- 4. Sidebar Light Theme (Fixing White-on-White Washing Out) ---- */
 [data-testid="stSidebar"] {
     background-color: #ffffff !important;
     border-right: 1px solid #e2e8f0 !important;
 }
-[data-testid="stSidebar"] hr {
-    border-color: #e2e8f0 !important;
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] h4 {
+    color: #0f172a !important;
+    font-weight: 900 !important;
+}
+[data-testid="stSidebar"] strong,
+[data-testid="stSidebar"] b {
+    color: #0f172a !important;
+    font-weight: 800 !important;
+}
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] div {
+    color: #334155 !important;
+}
+.sidebar-header-label {
+    font-size: 0.78rem !important;
+    font-weight: 900 !important;
+    color: #1e293b !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 6px !important;
 }
 
-/* ---- Title Banner ---- */
-.main-title {
-    text-align: center;
-    font-size: 1.30rem;
-    font-weight: 800;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    background: linear-gradient(90deg, #1d4ed8, #059669, #d97706);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding: 10px 0 4px 0;
-    line-height: 1.35;
-}
-.subtitle {
-    text-align: center;
-    color: #475569;
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    margin-bottom: 8px;
-}
-
-/* ---- Stage Buttons (Light Theme) ---- */
-div[data-testid="column"] .stButton > button {
-    width: 100%;
-    padding: 14px 10px;
-    font-size: 0.90rem;
-    font-weight: 700;
-    border-radius: 10px;
-    border: 2px solid #cbd5e1;
-    background-color: #ffffff;
-    color: #0f172a;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-}
-div[data-testid="column"] .stButton > button:hover {
-    border-color: #3b82f6;
-    background-color: #f0fdf4;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-}
-
-/* ---- Health Gauge Card ---- */
+/* ---- 5. Health Gauge Card ---- */
 .health-card {
     border-radius: 14px;
     padding: 20px 14px 16px 14px;
     text-align: center;
     margin-bottom: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 .health-pct {
     font-size: 3.6rem;
@@ -111,11 +203,11 @@ div[data-testid="column"] .stButton > button:hover {
     font-size: 0.78rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 800;
     margin-top: 4px;
 }
 
-/* ---- Metric Cards (Light Theme) ---- */
+/* ---- 6. Metric Cards ---- */
 .metric-card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
@@ -129,7 +221,7 @@ div[data-testid="column"] .stButton > button:hover {
     color: #64748b;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    font-weight: 600;
+    font-weight: 700;
 }
 .metric-value {
     font-size: 1.45rem;
@@ -138,48 +230,48 @@ div[data-testid="column"] .stButton > button:hover {
     margin: 2px 0;
 }
 
-/* ---- Status Pills ---- */
+/* ---- 7. Status Pills ---- */
 .pill-normal {
-    background: #dcfce7;
-    color: #15803d;
-    border: 1px solid #86efac;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 0.70rem;
-    font-weight: 700;
+    background: #dcfce7 !important;
+    color: #15803d !important;
+    border: 1px solid #86efac !important;
+    padding: 3px 10px !important;
+    border-radius: 20px !important;
+    font-size: 0.70rem !important;
+    font-weight: 800 !important;
 }
 .pill-warning {
-    background: #fef3c7;
-    color: #b45309;
-    border: 1px solid #fde68a;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 0.70rem;
-    font-weight: 700;
+    background: #fef3c7 !important;
+    color: #b45309 !important;
+    border: 1px solid #fde68a !important;
+    padding: 3px 10px !important;
+    border-radius: 20px !important;
+    font-size: 0.70rem !important;
+    font-weight: 800 !important;
 }
 .pill-critical {
-    background: #fee2e2;
-    color: #b91c1c;
-    border: 1px solid #fca5a5;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 0.70rem;
-    font-weight: 700;
+    background: #fee2e2 !important;
+    color: #b91c1c !important;
+    border: 1px solid #fca5a5 !important;
+    padding: 3px 10px !important;
+    border-radius: 20px !important;
+    font-size: 0.70rem !important;
+    font-weight: 800 !important;
 }
 
-/* ---- Section Headers ---- */
+/* ---- 8. Section Headers ---- */
 .section-head {
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.10em;
     text-transform: uppercase;
-    color: #475569;
+    color: #1e293b;
     border-bottom: 2px solid #e2e8f0;
     padding-bottom: 4px;
     margin: 14px 0 10px 0;
 }
 
-/* ---- Live Badge (Dynamic Pulse) ---- */
+/* ---- 9. Live Badge (Dynamic Pulse) ---- */
 .live-badge {
     display: inline-block;
     background: #ecfdf5;
@@ -198,14 +290,14 @@ div[data-testid="column"] .stButton > button:hover {
     50% { opacity: 0.65; transform: scale(1.02); }
 }
 
-/* ---- Four Concept Tags ---- */
+/* ---- 10. Four Concept Tags ---- */
 .concept-tag {
     display: inline-block;
     margin: 3px;
-    padding: 5px 12px;
+    padding: 6px 12px;
     border-radius: 6px;
-    font-size: 0.73rem;
-    font-weight: 700;
+    font-size: 0.74rem;
+    font-weight: 800;
     letter-spacing: 0.04em;
     box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
@@ -217,13 +309,13 @@ div[data-testid="column"] .stButton > button:hover {
 """, unsafe_allow_html=True)
 
 # ------------------------------------------------------------------ #
-# APPLICATION HEADER                                                  #
+# APPLICATION HEADER (BOLD TITLE)                                     #
 # ------------------------------------------------------------------ #
 
 st.markdown("""
 <div class="main-title">
-  Twin Reference Adaptive Battery Management System<br>
-  with Deviation Attribution for Personalized EV Battery Health
+  TWIN REFERENCE ADAPTIVE BATTERY MANAGEMENT SYSTEM<br>
+  WITH DEVIATION ATTRIBUTION FOR PERSONALIZED EV BATTERY HEALTH
 </div>
 <div class="subtitle">
   Academic Engineering Design Project &nbsp;|&nbsp;
@@ -279,19 +371,19 @@ STAGE_CONFIG = {
     "new": {
         "accent": "#15803d",
         "bg": "#f0fdf4",
-        "border": "#22c55e",
+        "border": "#16a34a",
         "label": "STAGE 1: NEW BATTERY (DAY-ONE CONDITION)"
     },
     "eol": {
         "accent": "#b91c1c",
         "bg": "#fef2f2",
-        "border": "#ef4444",
+        "border": "#dc2626",
         "label": "STAGE 2: END OF LIFE (SEVERE DEGRADATION)"
     },
     "adaptive": {
         "accent": "#1d4ed8",
         "bg": "#eff6ff",
-        "border": "#3b82f6",
+        "border": "#2563eb",
         "label": "STAGE 3: ADAPTIVE TWIN EXTENDED (TWIN REFERENCE MODEL)"
     },
 }
@@ -299,10 +391,10 @@ sc = STAGE_CONFIG[stage]
 
 # Active Stage Indicator
 st.markdown(f"""
-<div style="background:{sc['bg']};border:1.5px solid {sc['border']};
-            border-radius:10px;padding:8px 18px;margin:10px 0;text-align:center;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.04);">
-  <span style="color:{sc['accent']};font-weight:800;font-size:0.95rem;letter-spacing:0.06em;">
+<div style="background:{sc['bg']};border:2px solid {sc['border']};
+            border-radius:10px;padding:9px 18px;margin:10px 0;text-align:center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+  <span style="color:{sc['accent']};font-weight:900;font-size:0.96rem;letter-spacing:0.06em;">
     ● {sc['label']}
   </span>
 </div>
@@ -356,21 +448,21 @@ def render_dynamic_live_dashboard():
 
         st.markdown(f"""
         <div class="health-card" style="background:{h_bg};border:2px solid {h_ring};">
-          <div style="font-size:0.70rem;color:#475569;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;">
+          <div style="font-size:0.72rem;color:#334155;letter-spacing:0.1em;text-transform:uppercase;font-weight:800;">
             🔋 BATTERY HEALTH
           </div>
           <div class="health-pct" style="color:{h_color};">{health:.1f}%</div>
-          <div style="color:{h_color};font-weight:800;font-size:0.90rem;margin:4px 0;">{h_label}</div>
-          <div style="color:#64748b;font-size:0.72rem;">State of Health (SOH)</div>
-          <hr style="border-color:#e2e8f0;margin:10px 0;">
-          <div style="font-size:0.68rem;color:#64748b;font-weight:600;">SOH vs Shadow Curve</div>
-          <div style="font-size:1.15rem;font-weight:800;color:{'#15803d' if state.soh_deviation_pct >= 0 else '#b91c1c'};">
+          <div style="color:{h_color};font-weight:900;font-size:0.92rem;margin:4px 0;">{h_label}</div>
+          <div style="color:#475569;font-size:0.74rem;font-weight:600;">State of Health (SOH)</div>
+          <hr style="border-color:#cbd5e1;margin:10px 0;">
+          <div style="font-size:0.70rem;color:#475569;font-weight:700;">SOH vs Shadow Curve</div>
+          <div style="font-size:1.18rem;font-weight:900;color:{'#15803d' if state.soh_deviation_pct >= 0 else '#b91c1c'};">
             {state.soh_deviation_pct:+.2f}%
           </div>
-          <div style="color:#64748b;font-size:0.68rem;">deviation from expected</div>
-          <hr style="border-color:#e2e8f0;margin:10px 0;">
-          <div style="font-size:0.68rem;color:#64748b;font-weight:600;">Adaptive Life Extension</div>
-          <div style="font-size:1.05rem;font-weight:800;color:#1d4ed8;">
+          <div style="color:#64748b;font-size:0.68rem;font-weight:600;">deviation from expected</div>
+          <hr style="border-color:#cbd5e1;margin:10px 0;">
+          <div style="font-size:0.70rem;color:#475569;font-weight:700;">Adaptive Life Extension</div>
+          <div style="font-size:1.05rem;font-weight:900;color:#1d4ed8;">
             {extension_text}
           </div>
         </div>
@@ -379,10 +471,10 @@ def render_dynamic_live_dashboard():
         # Dynamic State of Charge (SOC) Card
         st.markdown(f"""
         <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:10px;padding:12px;box-shadow:0 1px 2px rgba(0,0,0,0.04);">
-          <div style="font-size:0.70rem;color:#64748b;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;">
+          <div style="font-size:0.70rem;color:#475569;letter-spacing:0.08em;text-transform:uppercase;font-weight:800;">
             STATE OF CHARGE
           </div>
-          <div style="font-size:1.85rem;font-weight:800;color:#0284c7;margin:2px 0;">
+          <div style="font-size:1.85rem;font-weight:900;color:#0284c7;margin:2px 0;">
             {state.soc_pct:.2f}%
           </div>
           <div style="background:#f1f5f9;border-radius:6px;height:10px;margin-top:6px;overflow:hidden;border:1px solid #e2e8f0;">
@@ -396,11 +488,11 @@ def render_dynamic_live_dashboard():
         st.markdown('<div class="section-head">⚡ LIVE SENSOR PARAMETERS (DYNAMIC)</div>', unsafe_allow_html=True)
 
         def param_card(label, value, unit, icon="", ref=None, color="#0f172a"):
-            ref_html = f'<div style="color:#64748b;font-size:0.70rem;margin-top:2px;">Baseline: {ref}</div>' if ref else ""
+            ref_html = f'<div style="color:#64748b;font-size:0.70rem;margin-top:2px;font-weight:600;">Baseline: {ref}</div>' if ref else ""
             return f"""
             <div class="metric-card">
               <div class="metric-label">{icon} {label}</div>
-              <div class="metric-value" style="color:{color};">{value} <span style="font-size:0.85rem;color:#64748b;font-weight:600;">{unit}</span></div>
+              <div class="metric-value" style="color:{color};">{value} <span style="font-size:0.85rem;color:#64748b;font-weight:700;">{unit}</span></div>
               {ref_html}
             </div>"""
 
@@ -432,7 +524,7 @@ def render_dynamic_live_dashboard():
                                    f"{fp['rated_capacity_Ah']:.1f} Ah"), unsafe_allow_html=True)
 
             st.markdown(param_card("Charge Status", state.charge_status, "", "🔄",
-                                   color="#475569"), unsafe_allow_html=True)
+                                   color="#334155"), unsafe_allow_html=True)
 
         # Day-One Fingerprint Reference Box
         st.markdown('<div class="section-head">🔎 DAY-ONE FINGERPRINT REFERENCE</div>', unsafe_allow_html=True)
@@ -440,20 +532,20 @@ def render_dynamic_live_dashboard():
         with fpc1:
             st.markdown(f"""
             <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:8px;text-align:center;">
-              <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;font-weight:700;">Rated Capacity</div>
-              <div style="font-size:1.05rem;font-weight:800;color:#1d4ed8;">{fp['rated_capacity_Ah']} Ah</div>
+              <div style="font-size:0.68rem;color:#475569;text-transform:uppercase;font-weight:800;">Rated Capacity</div>
+              <div style="font-size:1.08rem;font-weight:900;color:#1d4ed8;">{fp['rated_capacity_Ah']} Ah</div>
             </div>""", unsafe_allow_html=True)
         with fpc2:
             st.markdown(f"""
             <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:8px;text-align:center;">
-              <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;font-weight:700;">Nominal Voltage</div>
-              <div style="font-size:1.05rem;font-weight:800;color:#1d4ed8;">{fp['nominal_voltage_V']} V</div>
+              <div style="font-size:0.68rem;color:#475569;text-transform:uppercase;font-weight:800;">Nominal Voltage</div>
+              <div style="font-size:1.08rem;font-weight:900;color:#1d4ed8;">{fp['nominal_voltage_V']} V</div>
             </div>""", unsafe_allow_html=True)
         with fpc3:
             st.markdown(f"""
             <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:8px;text-align:center;">
-              <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;font-weight:700;">Initial Resistance</div>
-              <div style="font-size:1.05rem;font-weight:800;color:#1d4ed8;">{fp['initial_resistance_Ohm']*1000.0:.1f} mΩ</div>
+              <div style="font-size:0.68rem;color:#475569;text-transform:uppercase;font-weight:800;">Initial Resistance</div>
+              <div style="font-size:1.08rem;font-weight:900;color:#1d4ed8;">{fp['initial_resistance_Ohm']*1000.0:.1f} mΩ</div>
             </div>""", unsafe_allow_html=True)
 
     # ---- 3. RIGHT COLUMN: Deviation Attribution Layer & Warning Box ---- #
@@ -477,13 +569,13 @@ def render_dynamic_live_dashboard():
                         box-shadow:0 1px 2px rgba(0,0,0,0.03);">
               <div style="font-size:1.15rem;">{icon}</div>
               <div style="flex:1;">
-                <div style="font-size:0.70rem;color:#64748b;text-transform:uppercase;letter-spacing:0.04em;font-weight:700;">
+                <div style="font-size:0.72rem;color:#475569;text-transform:uppercase;letter-spacing:0.04em;font-weight:800;">
                   {row["Parameter"]}
                 </div>
                 <div style="display:flex;align-items:baseline;gap:10px;margin-top:1px;">
-                  <span style="font-size:0.98rem;font-weight:800;color:#0f172a;">{row["Live Value"]}</span>
-                  <span style="font-size:0.70rem;color:#64748b;">ref: {row["Reference"]}</span>
-                  <span style="font-size:0.75rem;font-weight:700;color:{dev_color};">
+                  <span style="font-size:0.98rem;font-weight:900;color:#0f172a;">{row["Live Value"]}</span>
+                  <span style="font-size:0.70rem;color:#64748b;font-weight:600;">ref: {row["Reference"]}</span>
+                  <span style="font-size:0.78rem;font-weight:800;color:{dev_color};">
                     {dev_str}
                   </span>
                 </div>
@@ -510,9 +602,9 @@ def render_dynamic_live_dashboard():
         st.markdown(f"""
         <div style="background:{alert_bg};border:1.5px solid {alert_border};border-radius:10px;
                     padding:10px 14px;margin-top:8px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,0.04);">
-          <div style="font-size:1.1rem;">{alert_icon}</div>
-          <div style="color:{alert_color};font-weight:800;font-size:0.85rem;margin:2px 0;">{alert_msg}</div>
-          <div style="color:#64748b;font-size:0.70rem;font-weight:600;">
+          <div style="font-size:1.15rem;">{alert_icon}</div>
+          <div style="color:{alert_color};font-weight:900;font-size:0.88rem;margin:2px 0;">{alert_msg}</div>
+          <div style="color:#475569;font-size:0.72rem;font-weight:700;">
             🟢 Normal: {n_normal} &nbsp;|&nbsp; 🟡 Warning: {n_warning} &nbsp;|&nbsp; 🔴 Critical: {n_critical}
           </div>
         </div>
@@ -678,8 +770,8 @@ c1, c2, c3, c4 = st.columns(4, gap="medium")
 with c1:
     st.markdown("""
     <div style="background:#eff6ff;border:1.5px solid #93c5fd;border-radius:10px;padding:14px;box-shadow:0 1px 2px rgba(0,0,0,0.03);">
-      <div style="color:#1d4ed8;font-weight:800;font-size:0.80rem;letter-spacing:0.06em;">① DAY-ONE FINGERPRINT</div>
-      <div style="color:#1e293b;font-size:0.75rem;margin-top:8px;line-height:1.45;">
+      <div style="color:#1d4ed8;font-weight:900;font-size:0.82rem;letter-spacing:0.06em;">① DAY-ONE FINGERPRINT</div>
+      <div style="color:#1e293b;font-size:0.75rem;margin-top:8px;line-height:1.45;font-weight:500;">
         A permanent reference snapshot of the battery's initial pristine condition when it was manufactured.
         Stores rated capacity (100 Ah), nominal voltage (3.65 V), initial impedance (12 mΩ), and baseline OCV curves.
         This fingerprint remains immutable throughout vehicle lifetime.
@@ -689,8 +781,8 @@ with c1:
 with c2:
     st.markdown("""
     <div style="background:#ecfdf5;border:1.5px solid #a7f3d0;border-radius:10px;padding:14px;box-shadow:0 1px 2px rgba(0,0,0,0.03);">
-      <div style="color:#047857;font-weight:800;font-size:0.80rem;letter-spacing:0.06em;">② EXPECTED AGING SHADOW CURVE</div>
-      <div style="color:#1e293b;font-size:0.75rem;margin-top:8px;line-height:1.45;">
+      <div style="color:#047857;font-weight:900;font-size:0.82rem;letter-spacing:0.06em;">② EXPECTED AGING SHADOW CURVE</div>
+      <div style="color:#1e293b;font-size:0.75rem;margin-top:8px;line-height:1.45;font-weight:500;">
         The manufacturer-claimed degradation baseline modeling expected SOH decline over cycle count.
         The Adaptive Twin Reference model extends this baseline by dynamically managing current rates and thermal stress
         to push actual battery life well above the shadow curve.
@@ -700,8 +792,8 @@ with c2:
 with c3:
     st.markdown("""
     <div style="background:#fffbeb;border:1.5px solid #fde68a;border-radius:10px;padding:14px;box-shadow:0 1px 2px rgba(0,0,0,0.03);">
-      <div style="color:#b45309;font-weight:800;font-size:0.80rem;letter-spacing:0.06em;">③ LIVE SENSOR STREAM</div>
-      <div style="color:#1e293b;font-size:0.75rem;margin-top:8px;line-height:1.45;">
+      <div style="color:#b45309;font-weight:900;font-size:0.82rem;letter-spacing:0.06em;">③ LIVE SENSOR STREAM</div>
+      <div style="color:#1e293b;font-size:0.75rem;margin-top:8px;line-height:1.45;font-weight:500;">
         Continuous real-time simulated telemetry generated by the 2-RC equivalent-circuit model,
         coulomb counting, and lumped thermal balance equations.
         All readings vary dynamically with simulated driver behavior and load transients.
@@ -711,8 +803,8 @@ with c3:
 with c4:
     st.markdown("""
     <div style="background:#fef2f2;border:1.5px solid #fecdd3;border-radius:10px;padding:14px;box-shadow:0 1px 2px rgba(0,0,0,0.03);">
-      <div style="color:#b91c1c;font-weight:800;font-size:0.80rem;letter-spacing:0.06em;">④ DEVIATION ATTRIBUTION LAYER</div>
-      <div style="color:#1e293b;font-size:0.75rem;margin-top:8px;line-height:1.45;">
+      <div style="color:#b91c1c;font-weight:900;font-size:0.82rem;letter-spacing:0.06em;">④ DEVIATION ATTRIBUTION LAYER</div>
+      <div style="color:#1e293b;font-size:0.75rem;margin-top:8px;line-height:1.45;font-weight:500;">
         Compares each dynamic live reading against the Day-One Fingerprint and aging shadow curve.
         Classifies deviations into NORMAL, WARNING, or CRITICAL status with colored warning lights
         to isolate degradation causes in real time.
@@ -720,37 +812,37 @@ with c4:
     </div>""", unsafe_allow_html=True)
 
 # ------------------------------------------------------------------ #
-# SIDEBAR CONTROL PANEL                                               #
+# SIDEBAR CONTROL PANEL (FIXING ALL COLOR ISSUES)                     #
 # ------------------------------------------------------------------ #
 
 with st.sidebar:
-    st.markdown("### 🔋 BMS Control Panel")
-    st.markdown("<span style='font-size:0.75rem;color:#64748b;'>Light Theme • Dynamic Physics</span>", unsafe_allow_html=True)
+    st.markdown('<div class="sidebar-title" style="font-size:1.35rem;font-weight:900;color:#0f172a !important;margin-bottom:2px;">🔋 BMS Control Panel</div>', unsafe_allow_html=True)
+    st.markdown('<div style="font-size:0.76rem;color:#475569 !important;font-weight:700;">Light Theme • Dynamic Physics</div>', unsafe_allow_html=True)
     st.divider()
 
-    st.markdown("**CURRENT ACTIVE STAGE**")
+    st.markdown('<div class="sidebar-header-label" style="color:#0f172a !important;font-weight:900;font-size:0.82rem;">CURRENT ACTIVE STAGE</div>', unsafe_allow_html=True)
     st.markdown(f"""
-    <div style="background:{sc['bg']};border:1.5px solid {sc['border']};
+    <div style="background:{sc['bg']};border:2px solid {sc['border']};
                 border-radius:8px;padding:10px;text-align:center;">
-      <div style="color:{sc['accent']};font-weight:800;font-size:0.85rem;">{sc['label']}</div>
+      <div style="color:{sc['accent']};font-weight:900;font-size:0.88rem;">{sc['label']}</div>
     </div>""", unsafe_allow_html=True)
 
     st.divider()
-    st.markdown("**DAY-ONE SPECIFICATIONS**")
+    st.markdown('<div class="sidebar-header-label" style="color:#0f172a !important;font-weight:900;font-size:0.82rem;">DAY-ONE SPECIFICATIONS</div>', unsafe_allow_html=True)
     st.markdown(f"""
-    <div style="font-size:0.75rem;color:#475569;line-height:1.6;">
-      <strong>Chemistry:</strong> {fp['cell_chemistry']}<br>
-      <strong>Rated Capacity:</strong> {fp['rated_capacity_Ah']} Ah<br>
-      <strong>Nominal Voltage:</strong> {fp['nominal_voltage_V']} V<br>
-      <strong>Initial Impedance:</strong> {fp['initial_resistance_Ohm']*1000.0:.1f} mΩ<br>
-      <strong>Thermal Mass:</strong> {fp['thermal_mass_J_per_K']} J/K<br>
-      <strong>Ambient Baseline:</strong> {fp['ambient_temp_C']} °C
+    <div style="font-size:0.78rem;color:#1e293b !important;line-height:1.7;">
+      <strong style="color:#0f172a !important;">Chemistry:</strong> {fp['cell_chemistry']}<br>
+      <strong style="color:#0f172a !important;">Rated Capacity:</strong> {fp['rated_capacity_Ah']} Ah<br>
+      <strong style="color:#0f172a !important;">Nominal Voltage:</strong> {fp['nominal_voltage_V']} V<br>
+      <strong style="color:#0f172a !important;">Initial Impedance:</strong> {fp['initial_resistance_Ohm']*1000.0:.1f} mΩ<br>
+      <strong style="color:#0f172a !important;">Thermal Mass:</strong> {fp['thermal_mass_J_per_K']} J/K<br>
+      <strong style="color:#0f172a !important;">Ambient Baseline:</strong> {fp['ambient_temp_C']} °C
     </div>""", unsafe_allow_html=True)
 
     st.divider()
     st.markdown("""
-    <div style="font-size:0.70rem;color:#64748b;text-align:center;line-height:1.5;">
-      <span style="color:#16a34a;font-weight:700;">● STREAMING LIVE AT 1 HZ</span><br>
+    <div style="font-size:0.72rem;color:#475569 !important;text-align:center;line-height:1.5;font-weight:700;">
+      <span style="color:#16a34a !important;font-weight:900;">● STREAMING LIVE AT 1 HZ</span><br>
       Twin Reference Adaptive BMS<br>
       Academic Engineering Design Project
     </div>""", unsafe_allow_html=True)
