@@ -56,8 +56,9 @@ def load_fingerprint(path: str = "fingerprint.json") -> Dict:
 def ocv_from_soc(soc_pct: float, fp: Dict = DAY_ONE_FINGERPRINT) -> float:
     """Return open-circuit voltage at given SOC using linear interpolation."""
     table = fp["ocv_table"]
+    # Keys may be int or str depending on source (dict literal vs JSON load)
     keys  = sorted([float(k) for k in table.keys()])
-    vals  = [table[str(int(k))] for k in keys]
+    vals  = [table.get(str(int(k)), table.get(int(k))) for k in keys]
     return float(np.interp(np.clip(soc_pct, 0, 100), keys, vals))
 
 
